@@ -1,0 +1,158 @@
+/* Reset default margins and paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure the html and body elements take up full height */
+html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+#root {
+    height: 100%;
+}
+
+#ContentContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1rem;
+    background-color: #F7E7DC;
+    max-height: 100vh;
+}
+
+/* TopBar */
+.TopBar {
+    background-color: palegoldenrod;
+    text-align: center;
+    flex: 0 0 7%;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    border: solid 1rem #758694;
+    min-height: 50px;
+    max-height: 10vh;
+}
+
+/* Main Content Container */
+.MainContent {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    min-height: 0; /* Allow it to shrink if needed */
+    overflow: hidden; /* Prevent overflow */
+}
+
+/* Left Content Box */
+.MainContentLeft {
+    --gap: 10px;
+    --radius: 20px;
+
+    background-color: #758694;
+    flex: 1;
+    margin-right: 0.5rem;
+    border-radius: var(--radius);
+    text-align: center;
+    padding: var(--gap);
+    overflow: hidden;
+}
+
+.LeftContentInner {
+    background-color: #F7E7DC;
+    width: 100%;
+    height: 100%;
+    border-radius: calc(var(--radius) - var(--gap));
+    overflow: auto;
+}
+
+/* Right Content Box */
+.MainContentRight {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.5rem;
+    flex: 1;
+    overflow: hidden;
+}
+
+/* Right Top Content Box */
+.RightContentTop {
+    --outer-radius: 20px;
+    --inner-radius: 16px;
+    --gap: 10px;
+
+    background-color: #758694;
+    margin-bottom: 0.5rem;
+    flex: 1;
+    border-radius: var(--outer-radius);
+    padding: var(--gap);
+    overflow: hidden;
+}
+
+.TopRightInner {
+    background-color: #F7E7DC;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--inner-radius);
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    overflow: hidden;
+}
+
+.SupportedAPIInfo {
+    height: 35%;
+    background-color: palegreen;
+    margin-bottom: 0.5rem;
+    border-radius: calc(var(--inner-radius) - 4px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    padding: 0.5rem;
+}
+
+.SupportedAPIList {
+    height: 65%;
+    background-color: #9db1c6;
+    border-radius: calc(var(--inner-radius) - 4px);
+    padding: 0.5rem;
+    overflow: auto;
+}
+
+.SupportedAPIsTitle {
+    text-align: center;
+    margin: 0.5rem;
+}
+
+.SupportedAPIsContent {
+    text-align: center;
+    padding: 0.5rem;
+    overflow: auto;
+}
+
+/* Right Bottom Content Box */
+.RightContentBottom {
+    --gap: 10px;
+    --radius: 20px;
+
+    background-color: #758694;
+    margin-top: 0.5rem;
+    flex: 1;
+    border-radius: var(--radius);
+    text-align: center;
+    padding: var(--gap);
+    overflow: hidden;
+}
+
+.BottomRightInner {
+    background-color: #F7E7DC;
+    width: 100%;
+    height: 100%;
+    border-radius: calc(var(--radius) - var(--gap));
+    overflow: auto;
+}
