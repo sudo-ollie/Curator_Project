@@ -1,5 +1,11 @@
 const axios = require("axios");
 const timeNow = new Date();
+const hours = timeNow.getHours().toString().padStart(2, '0');
+const minutes = timeNow.getMinutes().toString().padStart(2, '0');
+const seconds = timeNow.getSeconds().toString().padStart(2, '0');
+const milliseconds = timeNow.getMilliseconds().toString().padStart(3, '0');
+
+const formattedTime = `${hours}:${minutes}:${seconds}.${milliseconds}`;
 
 async function harvardReq(searchParam) {
     try {
@@ -25,6 +31,12 @@ async function harvardReq(searchParam) {
                 "artist": element.people && element.people.length > 0 ? element.people[0].name : "Unknown"
             })
         });
+
+        for (let x in itemArray)
+        {
+            console.log(itemArray[x])
+        }
+
         console.log(`[+] - Total Harvard Records Converted : ${itemArray.length}`);
         console.log(Object.keys(itemArray[0]))
         
@@ -60,6 +72,8 @@ async function metReq(searchParam) {
                     "artist": response.data.artistDisplayName
                 })
 
+            console.log(itemArray[x])
+
             }
             console.log(`[+] - Total Harvard Records Converted : ${itemArray.length}`);
             console.log(Object.keys(itemArray[0]))
@@ -77,5 +91,24 @@ async function main (searchParam) {
     await metReq(searchParam)
 }
 
+main("Sunflower")
 
-main("sunflower")
+async function main2 () {
+    try{
+        console.log(`[${formattedTime}] - Request Initiated`)
+        const response = await axios.get("https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/Development/test_item")
+        console.log(`[${formattedTime}] - Response Recieved`)
+        let count = 0
+        while (count <= 10)
+        {
+            console.log(response.data[count])
+            count++
+        }
+    }
+    catch (error)
+    {
+        console.error(`Error Fetching API : ${error.message}`)
+    }
+}
+
+//  main2()
