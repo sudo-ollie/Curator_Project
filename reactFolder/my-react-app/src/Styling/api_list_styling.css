@@ -1,0 +1,19 @@
+.SupportedAPIList {
+    height: 65%;
+    background-color: #dbdaa3;
+    border-radius: calc(var(--inner-radius) - 4px);
+    padding: 0.5rem;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SupportedAPIList::-webkit-scrollbar {
+    display: none;
+}
+
+.SupportedAPIList h3 {
+    text-align: center;
+    font-weight: 600;
+}

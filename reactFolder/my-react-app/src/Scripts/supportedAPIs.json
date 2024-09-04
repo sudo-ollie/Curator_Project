@@ -1,0 +1,37 @@
+[
+  {
+    "API_Name": "Harvard Art Museum",
+    "Web_Link": "https://harvardartmuseums.org/",
+    "API_Logo": "https://fundit.fr/sites/default/files/styles/max_650x650/public/actors/2276-harvard-art-museums.png?itok=epM5kg-l",
+    "API_Type": "Museum",
+    "API_Docs": "https://github.com/harvardartmuseums/api-docs"
+  },
+  {
+    "API_Name": "The Metropolitan Museum of Art",
+    "Web_Link": "https://www.metmuseum.org/",
+    "API_Logo": "https://lh3.googleusercontent.com/ci/AL18g_SQEIKspiRCDklDH-74e_tZ_sx5Bvqghb_nnSLxpeJv3ruol-yknXbNfuMJGBfDn7TqUZEET0Y=fcrop64=1,00000000ffffffb5",
+    "API_Type": "Museum",
+    "API_Docs": "https://metmuseum.github.io/"
+  },
+  {
+    "API_Name": "Space Holder",
+    "Web_Link": "Harvard Link",
+    "API_Logo": "Haravard Logo",
+    "API_Type": "Space Holder",
+    "API_Docs": "https://SpaceHolder.com"
+  },
+  {
+    "API_Name": "Space Holder",
+    "Web_Link": "Space Holder Link",
+    "API_Logo": "Space Holder Logo",
+    "API_Type": "Space Holder",
+    "API_Docs": "https://SpaceHolder.com"
+  },
+  {
+    "API_Name": "Space Holder",
+    "Web_Link": "Space Holder Link",
+    "API_Logo": "Space Holder Logo",
+    "API_Type": "Space Holder",
+    "API_Docs": "https://SpaceHolder.com"
+  }
+]

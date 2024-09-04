@@ -27,17 +27,29 @@ html, body {
 
 /* TopBar */
 .TopBar {
-    background-color: palegoldenrod;
+    --gap: 10px;
+    --radius: 20px;
+
+    background-color: #758694;
     text-align: center;
     flex: 0 0 7%;
     margin-bottom: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 15px;
-    border: solid 1rem #758694;
+    border-radius: var(--radius);
     min-height: 50px;
     max-height: 10vh;
+    padding: var(--gap);
+    overflow: hidden;
+}
+
+.TopBarInner {
+    background-color: #F7E7DC;
+    width: 100%;
+    height: 100%;
+    border-radius: calc(var(--radius) - var(--gap));
+    overflow: auto;
 }
 
 /* Main Content Container */
@@ -116,12 +128,8 @@ html, body {
     padding: 0.5rem;
 }
 
-.SupportedAPIList {
-    height: 65%;
-    background-color: #9db1c6;
-    border-radius: calc(var(--inner-radius) - 4px);
-    padding: 0.5rem;
-    overflow: auto;
+.SupportedAPIsContent::-webkit-scrollbar {
+    display: none;
 }
 
 .SupportedAPIsTitle {
