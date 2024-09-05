@@ -25,9 +25,8 @@ html, body {
     max-height: 100vh;
 }
 
-/* TopBar */
 .TopBar {
-    --gap: 10px;
+    --gap: 6px;
     --radius: 20px;
 
     background-color: #758694;
@@ -43,7 +42,7 @@ html, body {
     padding: var(--gap);
     overflow: hidden;
 }
-
+/* TopBar Content */
 .TopBarInner {
     background-color: #F7E7DC;
     width: 100%;
@@ -51,6 +50,7 @@ html, body {
     border-radius: calc(var(--radius) - var(--gap));
     overflow: auto;
 }
+
 
 /* Main Content Container */
 .MainContent {
@@ -61,9 +61,10 @@ html, body {
     overflow: hidden; /* Prevent overflow */
 }
 
+
 /* Left Content Box */
 .MainContentLeft {
-    --gap: 10px;
+    --gap: 6px;
     --radius: 20px;
 
     background-color: #758694;
@@ -74,16 +75,64 @@ html, body {
     padding: var(--gap);
     overflow: hidden;
 }
-
 .LeftContentInner {
     background-color: #F7E7DC;
     width: 100%;
     height: 100%;
     border-radius: calc(var(--radius) - var(--gap));
     overflow: auto;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+.SearchContainer {
+    background-color: #758694;
+    width: 100%;
+    height: 35%;
+    padding: var(--gap);
+    border-radius: calc(var(--radius) - 2 * var(--gap));
+}
+.SearchContainerInner {
+    /* background-color: #F7E7DC; */
+    width: 100%;
+    height: 100%;
+    border-radius: calc(var(--radius) - 2 * var(--gap));
+
+    display: flex;
+    flex-direction: column;
 }
 
-/* Right Content Box */
+.SearchBtnDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    padding-top: var(--gap);
+    gap: 0.6%;
+}
+
+.SearchInputDiv {
+    border: 3px solid #F7E7DC;
+    height: 85%;
+    border-radius: calc(var(--radius) - 2 * var(--gap));
+}
+.SearchResultContainer {
+    background-color: rgb(229, 185, 244);
+    width: 100%;
+    max-width: 100%;
+    height: 65%;
+    border-radius: calc(var(--radius) - 2 * var(--gap));
+    background-attachment: local;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 2px solid red;
+    padding: var(--gap);
+}
+
+
+/* Right Content Box Containers */
 .MainContentRight {
     display: flex;
     flex-direction: column;
@@ -91,12 +140,10 @@ html, body {
     flex: 1;
     overflow: hidden;
 }
-
-/* Right Top Content Box */
 .RightContentTop {
     --outer-radius: 20px;
-    --inner-radius: 16px;
-    --gap: 10px;
+    --inner-radius: 14px;
+    --gap: 6px;
 
     background-color: #758694;
     margin-bottom: 0.5rem;
@@ -117,7 +164,8 @@ html, body {
     overflow: hidden;
 }
 
-.SupportedAPIInfo {
+
+/* .SupportedAPIInfo {
     height: 35%;
     background-color: palegreen;
     margin-bottom: 0.5rem;
@@ -126,9 +174,8 @@ html, body {
     flex-direction: column;
     overflow: hidden;
     padding: 0.5rem;
-}
-
-.SupportedAPIsContent::-webkit-scrollbar {
+} */
+/* .SupportedAPIsContent::-webkit-scrollbar {
     display: none;
 }
 
@@ -141,11 +188,12 @@ html, body {
     text-align: center;
     padding: 0.5rem;
     overflow: auto;
-}
+} */
+
 
 /* Right Bottom Content Box */
 .RightContentBottom {
-    --gap: 10px;
+    --gap: 6px;
     --radius: 20px;
 
     background-color: #758694;
@@ -156,7 +204,6 @@ html, body {
     padding: var(--gap);
     overflow: hidden;
 }
-
 .BottomRightInner {
     background-color: #F7E7DC;
     width: 100%;

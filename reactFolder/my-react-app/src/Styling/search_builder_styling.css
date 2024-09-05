@@ -1,0 +1,26 @@
+.SearchInputDiv {
+  padding: 1rem;
+}
+
+h5 {
+  margin-top: 0.3rem;
+  color: #F7E7DC;
+}
+
+.inline-display {
+  display: flex;
+  align-items: center;
+}
+
+.inline-display label {
+  color: #F7E7DC;
+  font-size: large;
+  font-weight: 700;
+  margin-right: 0.5rem;
+}
+
+.inline-display input {
+  height: 2rem;
+  padding: 0 0.5rem;
+  font-size: 1rem;
+}

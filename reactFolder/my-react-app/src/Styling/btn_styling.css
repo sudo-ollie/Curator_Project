@@ -1,0 +1,13 @@
+button {
+    background-color: #F7E7DC !important;
+    color: #405D72 !important;
+    height: 100%;
+    border-radius: calc(var(--radius) - 2 * var(--gap));
+    border: solid 0px #F7E7DC;
+    text-align: center;
+}
+
+button:hover {
+    background-color: #405D72 !important;
+    color: #F7E7DC !important;
+}
