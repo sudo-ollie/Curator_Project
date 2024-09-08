@@ -18,8 +18,6 @@ export default function ResultContainer() {
             }}
           >
             {Object.entries(element).map(([key, value]) => {
-              console.log(key)
-              console.log(`Value : ${value} | Typeof : ${typeof(value)}`)
               if (key === "ImageUrl" && value === null) {
                 return <img key={key} src={"https://www.svgrepo.com/show/508699/landscape-placeholder.svg"} alt="" style={{maxHeight: "100px", maxWidth: "100px"}} />;
               }

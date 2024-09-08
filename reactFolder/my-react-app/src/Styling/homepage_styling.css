@@ -131,6 +131,9 @@ html, body {
     padding: var(--gap);
 }
 
+.SearchResultContainer::-webkit-scrollbar {
+    display: none;
+}
 
 /* Right Content Box Containers */
 .MainContentRight {
