@@ -9,25 +9,54 @@ export default function ResultContainer() {
       <p>Results</p>
       {apiResponse ? (
         apiResponse.map((element, index) => (
-          <div 
-            key={index} 
-            style={{
-              border: "solid 2px red", 
-              margin: "2px", 
-              borderRadius: "calc(var(--radius) - 2 * var(--gap))"
-            }}
-          >
-            {Object.entries(element).map(([key, value]) => {
-              if (key === "ImageUrl" && value === null) {
-                return <img key={key} src={"https://www.svgrepo.com/show/508699/landscape-placeholder.svg"} alt="" style={{maxHeight: "100px", maxWidth: "100px"}} />;
-              }
-              else if (key === "ImageUrl") {
-                return <img key={key} src={value} alt="" style={{maxHeight: "100px", maxWidth: "100px"}}/>;
-              } 
-              else {
-                return <p key={key}>{`${key}: ${value}`}</p>;
-              }
-            })}
+          <div key={index} className="searchResult">
+            <div className="seachResult_img">
+              {Object.entries(element).map(([key, value]) => {
+                if (key === "ImageUrl" && value === null) {
+                  return (
+                    <img
+                      key={key}
+                      src={
+                        "https://www.svgrepo.com/show/508699/landscape-placeholder.svg"
+                      }
+                      alt=""
+                      style={{ maxHeight: "200px", maxWidth: "200px" }}
+                    />
+                  );
+                } else if (key === "ImageUrl") {
+                  return (
+                    <img
+                      key={key}
+                      src={value}
+                      alt=""
+                      style={{ maxHeight: "200px", maxWidth: "200px" }}
+                    />
+                  );
+                }
+              })}
+            </div>
+            <div className="searchResult_content">
+              <ul>
+                {Object.entries(element).map(([key, value]) => {
+                  if (key !== "ImageUrl") {
+                    switch (key) {
+                      case "CreditLine":
+                        return (
+                          <li key={key}>{`Acquisistion Method : ${value}`}</li>
+                        );
+                      case "ArticleDivision":
+                        return <li key={key}>{`Category : ${value}`}</li>;
+                      case "ArticleId":
+                        return <li key={key}>{`Article ID : ${value}`}</li>;
+                      case "ArticleClassification":
+                        return <li key={key}>{`Article Medium : ${value}`}</li>;
+                      default:
+                        return <li key={key}>{`Artist : ${value}`}</li>;
+                    }
+                  }
+                })}
+              </ul>
+            </div>
           </div>
         ))
       ) : (

@@ -6,11 +6,12 @@ export const SearchContext = createContext();
 
 export default function SearchResultWrapper() {
   const [apiResponse, setApiResponse] = useState(null);
+  const [searchState, setSearchState] = useState(false)
 
   return (
     <SearchContext.Provider value={{ apiResponse, setApiResponse }}>
-      <SearchContainer />
-      <ResultContainer />
+      <SearchContainer updateSearchState={setSearchState} />
+      <ResultContainer searchState={searchState} />
     </SearchContext.Provider>
   );
 }
