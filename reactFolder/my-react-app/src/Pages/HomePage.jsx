@@ -1,6 +1,8 @@
 import "../Styling/homepage_styling.css";
 import TopBar from "../Components/TopBar";
 import SearchResultWrapper from "../Scripts/ResultsWrapper";
+import PublicExhibitions from "../Components/PublicExhibitions";
+import UserExhibitons from "../Components/UserExhibitons";
 import {
   SignedIn,
   SignedOut,
@@ -8,6 +10,7 @@ import {
   SignInButton,
   useUser
 } from "@clerk/clerk-react";
+
 
 function HomePage() {
   const { isSignedIn, user } = useUser();
@@ -28,7 +31,8 @@ function HomePage() {
                   <>
                     <p>User is signed in. UserButton should appear below:</p>
                     <p>{user.id}</p>
-                    <UserButton />
+                    <UserExhibitons userID={user.id} />
+                    <button>Explore  More</button>
                   </>
                 ) : (
                   <p>User should be signed in, but isSignedIn is false</p>
@@ -42,6 +46,7 @@ function HomePage() {
           <div className="RightContentBottom">
             <div className="BottomRightInner">
               <p>Public Exhibitions</p>
+              {/* <PublicExhibitions /> */}
             </div>
           </div>
         </div>
