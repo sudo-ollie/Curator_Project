@@ -45,8 +45,7 @@ function HomePage() {
           </div>
           <div className="RightContentBottom">
             <div className="BottomRightInner">
-              <p>Public Exhibitions</p>
-              {/* <PublicExhibitions /> */}
+              <PublicExhibitions />
             </div>
           </div>
         </div>

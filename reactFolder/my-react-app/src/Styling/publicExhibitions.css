@@ -1,0 +1,38 @@
+.publicExhibitionContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.publicExhibitionContainer .titleContainer {
+    background-color: palegoldenrod;
+    height: 15%;
+    padding: 5px;
+}
+
+.publicExhibitionContainer .exhibitionResults {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 5px;
+}
+
+.exhibitionResults::-webkit-scrollbar {
+    display: none;
+  }
+
+.publicExhibitionContainer .buttonContainer {
+    background-color: palevioletred;
+    padding: 10px;
+}
+
+.publicExhibitionContainer .buttonContainer button {
+    width: 10%;
+}
+
+.exhibitionIndividual {
+    background-color: palegreen;
+    margin-bottom: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
