@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import ExhibitionCard from "./ExhibitionCard";
+import "../Styling/publicExhibitions.css";
 
-function UserExhibitions({ userID }) {
+function UserExhibitions({ userID, userName }) {
   const [userExhibitions, setUserExhibitions] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,7 +19,7 @@ function UserExhibitions({ userID }) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const result = await response.json();
-        console.log(result)
+        console.log(result);
         setUserExhibitions(result.exhibitions);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -34,41 +36,23 @@ function UserExhibitions({ userID }) {
   if (!userExhibitions) return <div>No exhibition data available</div>;
 
   return (
-    <div>
-      <h4>User Exhibitions</h4>
-      {error !== null ? (
-        <div>Error: {error}</div>
-      ) : (
-        <div>
-          {userExhibitions.length === 0 ? (
-            <p>No exhibitions found for this user.</p>
-          ) : (
-            <>
-              <p>{userExhibitions.length} exhibition(s) found</p>
-              <ul>
-                {userExhibitions.map((exhibition) => (
-                  <li key={exhibition.ExhibitionID}>
-                    <h5>{exhibition.ExhibitionName}</h5>
-                    <p>ID: {exhibition.ExhibitionID}</p>
-                    <p>Length: {exhibition.ExhibitionLength}</p>
-                    <p>Public: {exhibition.ExhibitionPublic ? 'Yes' : 'No'}</p>
-                    <p>User ID: {exhibition.UserID}</p>
-                    <h6>Exhibit Content:</h6>
-                    <ul>
-                      {exhibition.ExhibitContent.map((content) => (
-                        <li key={`${exhibition.ExhibitionID}`}>
-                          {/* Render content properties here */}
-                          {JSON.stringify(content)}
-                        </li>
-                      ))}
-                    </ul>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-        </div>
-      )}
+    <div className="publicExhibitionContainer">
+      <div className="titleContainer">
+        <h4>{userName}'s Exhibitions</h4>
+        <p>{userExhibitions.length} exhibition(s) found</p>
+      </div>
+      <div className="exhibitionResults">
+        {userExhibitions.length === 0 ? (
+          <p>No public exhibitions found.</p>
+        ) : (
+          userExhibitions.map((exhibition, index) => (
+            <ExhibitionCard exhibitionObject={exhibition} key={index} />
+          ))
+        )}
+      </div>
+      <div className="buttonContainer">
+        <button>Explore More</button>
+      </div>
     </div>
   );
 }

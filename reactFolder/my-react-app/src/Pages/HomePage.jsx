@@ -29,10 +29,7 @@ function HomePage() {
             <SignedIn>
                 {isSignedIn ? (
                   <>
-                    <p>User is signed in. UserButton should appear below:</p>
-                    <p>{user.id}</p>
-                    <UserExhibitons userID={user.id} />
-                    <button>Explore  More</button>
+                    <UserExhibitons userID={user.id} userName={user.fullName}/>
                   </>
                 ) : (
                   <p>User should be signed in, but isSignedIn is false</p>

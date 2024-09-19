@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import "../Styling/publicExhibitions.css"
+import ExhibitionCard from "./ExhibitionCard";
+import "../Styling/publicExhibitions.css";
 
 function PublicExhibitions({ userID }) {
   const [publicExhibitions, setPublicExhibitions] = useState(null);
@@ -18,7 +19,6 @@ function PublicExhibitions({ userID }) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const result = await response.json();
-        console.log(result);
         setPublicExhibitions(result.exhibitions);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -32,49 +32,26 @@ function PublicExhibitions({ userID }) {
   }, [userID]);
 
   if (isLoading) return <div>Loading exhibitions...</div>;
+  if (error) return <div>Error: {error}</div>;
   if (!publicExhibitions) return <div>No exhibition data available</div>;
 
   return (
     <div className="publicExhibitionContainer">
       <div className="titleContainer">
-      <h4>Public Exhibitions</h4>
-      <p>{publicExhibitions.length} exhibition(s) found</p>
+        <h4>Public Exhibitions</h4>
+        <p>{publicExhibitions.length} exhibition(s) found</p>
       </div>
-      {error !== null ? (
-        <div className="exhibitionResults">
-          Error: {error}
-          </div>
-      ) : (
-        <div className="exhibitionResults">
-          {publicExhibitions.length === 0 ? (
-            <p>No public exhibitions found.</p>
-          ) : (
-            <div className="exhibitionResults">
-              {publicExhibitions.map((exhibition) => (
-                <div key={exhibition.ExhibitionID} className="exhibitionIndividual">
-                  <h5>{exhibition.ExhibitionName}</h5>
-                  <p>ID: {exhibition.ExhibitionID}</p>
-                  <p>Length: {exhibition.ExhibitionLength}</p>
-                  <p>Public: {exhibition.ExhibitionPublic ? "Yes" : "No"}</p>
-                  <p>User ID: {exhibition.UserID}</p>
-                  <h6>Exhibit Content:</h6>
-                  <ul>
-                    {exhibition.ExhibitContent.flatMap((content, contentIndex) =>
-                      Object.entries(content).map(([element, value], index) => (
-                        <li key={`${exhibition.ExhibitionID}-${contentIndex}-${element}-${index}`}>
-                          {element}: {value}
-                        </li>
-                      ))
-                    )}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
+      <div className="exhibitionResults">
+        {publicExhibitions.length === 0 ? (
+          <p>No public exhibitions found.</p>
+        ) : (
+          publicExhibitions.map((exhibition, index) => (
+            <ExhibitionCard exhibitionObject={exhibition} key={index} />
+          ))
+        )}
+      </div>
       <div className="buttonContainer">
-        <button>See More</button>
+        <button>Explore More</button>
       </div>
     </div>
   );
