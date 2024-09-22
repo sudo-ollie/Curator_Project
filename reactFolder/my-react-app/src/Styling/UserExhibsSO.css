@@ -1,0 +1,60 @@
+.TopRightInner {
+  background-color: #f7e7dc;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--inner-radius);
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+.topContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+  height: 70%;
+
+  background-color: rgb(172, 215, 172);
+}
+
+.bottomContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  width: 100%;
+  height: 30%;
+
+  background-color: rgb(180, 175, 211);
+}
+
+.bottomContainer p {
+  margin: auto;
+}
+
+.contentContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  width: 100%;
+  height: 50%;
+
+  background-color: rgb(144, 216, 169);
+}
+
+.contentContainer h5 {
+    margin: auto;
+    font-size: xx-large;
+    font-weight: 800;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(217, 147, 176);
+}

@@ -2,12 +2,11 @@ import "../Styling/homepage_styling.css";
 import TopBar from "../Components/TopBar";
 import SearchResultWrapper from "../Scripts/ResultsWrapper";
 import PublicExhibitions from "../Components/PublicExhibitions";
-import UserExhibitons from "../Components/UserExhibitons";
+import UserExhibs_SI from "../Components/UserExhibs_SI";
+import UserExhibs_SO from "../Components/UserExhibs_SO";
 import {
   SignedIn,
   SignedOut,
-  UserButton,
-  SignInButton,
   useUser
 } from "@clerk/clerk-react";
 
@@ -25,20 +24,16 @@ function HomePage() {
         </div>
         <div className="MainContentRight">
           <div className="RightContentTop">
-            <div className="TopRightInner">
             <SignedIn>
                 {isSignedIn ? (
-                  <>
-                    <UserExhibitons userID={user.id} userName={user.fullName}/>
-                  </>
+                  <UserExhibs_SI user={user} isSignedIn={isSignedIn} />
                 ) : (
                   <p>User should be signed in, but isSignedIn is false</p>
                 )}
               </SignedIn>
               <SignedOut>
-                <SignInButton />
+                <UserExhibs_SO/>
               </SignedOut>
-            </div>
           </div>
           <div className="RightContentBottom">
             <div className="BottomRightInner">
