@@ -4,6 +4,7 @@ import SearchResultWrapper from "../Scripts/ResultsWrapper";
 import PublicExhibitions from "../Components/PublicExhibitions";
 import UserExhibs_SI from "../Components/UserExhibs_SI";
 import UserExhibs_SO from "../Components/UserExhibs_SO";
+import ItemCard from "../Components/ItemCard";
 import {
   SignedIn,
   SignedOut,
@@ -19,7 +20,8 @@ function HomePage() {
       <div className="MainContent">
         <div className="MainContentLeft">
           <div className="LeftContentInner">
-          <SearchResultWrapper />
+          {/* <SearchResultWrapper /> */}
+          <ItemCard />
           </div>
         </div>
         <div className="MainContentRight">
