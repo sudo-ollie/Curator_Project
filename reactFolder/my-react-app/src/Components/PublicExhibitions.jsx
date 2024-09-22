@@ -39,10 +39,13 @@ function PublicExhibitions({ userID }) {
     <div className="publicExhibitionContainer">
       <div className="titleContainer">
         <h4>Public Exhibitions</h4>
-        {
-          publicExhibitions.length === 0 ? <p>No public exhibtions found, be the first to make one!</p> : 
-          publicExhibitions.length > 1 ? (<p>{publicExhibitions.length} exhibitions found</p>) : (<p>{publicExhibitions.length} exhibition found</p>)
-        }
+        {publicExhibitions.length === 0 ? (
+          <p>No public exhibtions found, be the first to make one!</p>
+        ) : publicExhibitions.length > 1 ? (
+          <p>{publicExhibitions.length} exhibitions found</p>
+        ) : (
+          <p>{publicExhibitions.length} exhibition found</p>
+        )}
       </div>
       <div className="exhibitionResults">
         {publicExhibitions.length === 0 ? (
