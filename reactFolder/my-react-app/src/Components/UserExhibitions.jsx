@@ -19,7 +19,6 @@ function UserExhibitions({ userID, userName }) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
         const result = await response.json();
-        console.log(result);
         setUserExhibitions(result.exhibitions);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -38,7 +37,7 @@ function UserExhibitions({ userID, userName }) {
   return (
     <div className="publicExhibitionContainer">
       <div className="titleContainer">
-        <h4>{userName}'s Exhibitions</h4>
+        <h4>Your Exhibitions</h4>
         <p>{userExhibitions.length} exhibition(s) found</p>
       </div>
       <div className="exhibitionResults">

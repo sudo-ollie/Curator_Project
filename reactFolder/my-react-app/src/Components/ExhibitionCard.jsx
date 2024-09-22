@@ -2,8 +2,6 @@ import "../Styling/publicExhibitions.css"
 
 function ExhibitionCard({exhibitionObject}) {
 
-    console.log(exhibitionObject)
-
   return (
     <div key={exhibitionObject.ExhibitionID} className="exhibitionIndividual">
     <div className="exhibImageContainer">

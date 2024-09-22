@@ -263,3 +263,13 @@ body {
   color: #f7e7dc;
   background-color: #405d72;
 }
+
+.signedOutContainer {
+  --inner-radius: 14px;
+
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--inner-radius);
+
+  background-color: palegoldenrod;
+}
