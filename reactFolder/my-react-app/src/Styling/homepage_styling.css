@@ -5,6 +5,14 @@
   box-sizing: border-box;
 }
 
+:root {
+  --gap: 6px;
+  --radius: 20px;
+  --bg-colour: #f7e7dc;
+  --text-colour: #405d72;
+  --middle-colour: #758694;
+}
+
 /* Ensure the html and body elements take up full height */
 html,
 body {
@@ -24,32 +32,6 @@ body {
   padding: 1rem;
   background-color: #f7e7dc;
   max-height: 100vh;
-}
-
-.TopBar {
-  --gap: 6px;
-  --radius: 20px;
-
-  background-color: #758694;
-  text-align: center;
-  flex: 0 0 7%;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: var(--radius);
-  min-height: 50px;
-  max-height: 10vh;
-  padding: var(--gap);
-  overflow: hidden;
-}
-/* TopBar Content */
-.TopBarInner {
-  background-color: #f7e7dc;
-  width: 100%;
-  height: 100%;
-  border-radius: calc(var(--radius) - var(--gap));
-  overflow: auto;
 }
 
 /* Main Content Container */
@@ -90,7 +72,7 @@ body {
 .SearchContainer {
   background-color: #758694;
   width: 100%;
-  height: 35%;
+  height: 20%;
   padding: var(--gap);
   border-radius: calc(var(--radius) - 2 * var(--gap));
 }
@@ -118,14 +100,13 @@ body {
   border-radius: calc(var(--radius) - 2 * var(--gap));
 }
 .SearchResultContainer {
-  background-color: rgb(229, 185, 244);
+  background-color: var(--middle-colour);
   width: 100%;
   max-width: 100%;
-  height: 65%;
+  height: 80%;
   display: flex;
   flex-direction: column;
   border-radius: calc(var(--radius) - 2 * var(--gap));
-  border: 2px solid red;
   padding: var(--gap);
   overflow: hidden;
 }
@@ -206,7 +187,6 @@ body {
 }
 
 .searchResult_img {
-  background-color: blue;
   width: 20%;
   height: 100%;
   min-height: 100%;
@@ -254,7 +234,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1;
-  background-color: rgb(229, 185, 244);
+  border: 3px solid #f7e7dc;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -266,6 +246,7 @@ body {
 .filterContainer p {
   margin: 0;
   font-weight: bold;
+  color: var(--bg-colour);
 }
 .dropdown .dropdown-menu {
     background-color: #f7e7dc;

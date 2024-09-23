@@ -1,0 +1,75 @@
+:root {
+  --gap: 6px;
+  --radius: 20px;
+  --bg-color: #f7e7dc;
+  --text-color: #405d72;
+}
+
+.TopBar {
+  background-color: #758694;
+  text-align: center;
+  flex: 0 0 7%;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  min-height: 50px;
+  max-height: 10vh;
+  padding: var(--gap);
+  overflow: hidden;
+}
+
+.TopBarInner {
+  background-color: var(--bg-color);
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--radius) - var(--gap));
+  overflow: hidden;
+}
+
+.TopBarContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.TopBarLinks {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: 100%;
+  margin-right: 2rem;
+}
+
+.TopBarText {
+  color: var(--text-color);
+  font-size: 16px;
+  text-decoration: none;
+  transition: color 0.3s, text-decoration 0.3s;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+a.TopBarText:hover {
+    transform: scale(1.05);
+}
+
+.UserButtonWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.UserButtonWrapper > * {
+  transform: scale(1.5);
+}
+
+.prevent-select {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

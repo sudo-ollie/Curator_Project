@@ -1,7 +1,6 @@
 import "../Styling/search_builder_styling.css";
 import { useContext, useEffect, useState } from "react";
 import SearchButton from "../Components/SearchButton";
-import SaveSearch from "../Components/SaveSearch";
 import { SearchContext } from "./ResultsWrapper";
 
 export default function SearchBuilder() {
@@ -36,7 +35,6 @@ export default function SearchBuilder() {
         </div>
       </div>
       <div className="SearchBtnDiv">
-        <SaveSearch />
         <SearchButton validSearch={validSearch} />
       </div>
     </>
