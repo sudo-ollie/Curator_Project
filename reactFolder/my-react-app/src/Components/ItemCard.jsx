@@ -1,36 +1,65 @@
+import { useState } from "react";
 import "../Styling/ItemCardStyling.css";
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" />
 
-export default function ItemCard() {
+export default function ItemCard({ element, index }) {
+  const [favourite, setFavourite] = useState(false);
+
+  function handleLike() {
+    setFavourite(!favourite);
+  }
+
   return (
-    <div className="ItemCardContainer">
+    <div key={index} className="ItemCardContainer">
       <div className="ItemCardImage">
         <div className="ItemCardImage_img">
           <img
-            src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg"
+            src={
+              element.ImageUrl ||
+              "https://www.svgrepo.com/show/508699/landscape-placeholder.svg"
+            }
             alt=""
-          />
-        </div>
-        <div className="ItemCard_likeicon">
-          <img
-            src="https://www.shareicon.net/data/2015/12/02/680965_button_512x512.png"
-            alt=""
-            style={{width:"30px" , height:"30px"}}
           />
         </div>
       </div>
       <div className="ItemCardContent">
         <div className="ItemCardTitle">
-          <h3>Item Title</h3>
-          <h5>Item Artist</h5>
+          <h3>Item Title : X</h3>
+          <h5>{element.ArtistName}</h5>
         </div>
         <div className="ItemCardDetails">
-          <p>Source</p>
-          <p>Credit Line</p>
-          <p>Category</p>
-          <p>Medium</p>
-          <p>Century</p>
+          <div className="fieldContainer">
+            <p id="content">X</p>
+            <p id="subHeading">Century</p>
+          </div>
+          <div className="fieldContainer">
+            <p id="content">{element.ArticleDivision}</p>
+            <p id="subHeading">Medium</p>
+          </div>
+          <div className="fieldContainer">
+            <p id="content">{element.ArticleClassification}</p>
+            <p id="subHeading">Category</p>
+          </div>
+          <div className="fieldContainer">
+            <p id="content">{element.ArticleId}</p>
+            <p id="subHeading">Credit Line</p>
+          </div>
+          <div className="fieldContainer">
+            <p id="content">{element.ArticleId}</p>
+            <p id="subHeading">ArticleID</p>
+          </div>
+        </div>
+        <div className="btnContainer">
+          <span className="material-symbols-outlined prevent-select">travel_explore</span>
+          <div className="ItemCard_likeicon" onClick={handleLike}>
+            <span
+              id="likeIcon"
+              className={`material-icons prevent-select ${
+                favourite ? "favorite" : ""
+              }`}
+            >
+              {favourite ? "favorite" : "favorite_border"}
+            </span>
+          </div>
         </div>
       </div>
     </div>

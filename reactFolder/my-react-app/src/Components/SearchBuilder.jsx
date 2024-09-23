@@ -1,15 +1,15 @@
 import "../Styling/search_builder_styling.css";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SearchButton from "../Components/SearchButton";
 import SaveSearch from "../Components/SaveSearch";
+import { SearchContext } from "./ResultsWrapper";
 
 export default function SearchBuilder() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [itemType, setItemType] = useState("");
+  const { searchTerm, setSearchTerm, itemType, setItemType } = useContext(SearchContext);
   const [validSearch, setValidSearch] = useState(false);
 
   useEffect(() => {
-    searchTerm.length > 0 && searchTerm.trim() !== "" ? setValidSearch(true) : setValidSearch(false);
+    setValidSearch(searchTerm.length > 0 && searchTerm.trim() !== "");
   }, [searchTerm]);
 
   return (
@@ -37,7 +37,7 @@ export default function SearchBuilder() {
       </div>
       <div className="SearchBtnDiv">
         <SaveSearch />
-        <SearchButton searchTerm={searchTerm.trim()} validSearch={validSearch} />
+        <SearchButton validSearch={validSearch} />
       </div>
     </>
   );

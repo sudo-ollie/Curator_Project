@@ -1,27 +1,30 @@
 import { useContext, useState } from "react";
-import { SearchContext } from "../Scripts/ResultsWrapper";
+import { SearchContext } from "./ResultsWrapper";
+import ItemCard from "./ItemCard";
 
 export default function ResultContainer() {
-  const { apiResponse } = useContext(SearchContext);
+  const { apiResponse, isLoading } = useContext(SearchContext);
   const [sortedResponse, setSortedResponse] = useState(apiResponse);
 
   function sortResults(criteria) {
     let sorted = [...apiResponse];
 
-    switch(criteria) {
-      case 'hasImage':
+    switch (criteria) {
+      case "hasImage":
         sorted.sort((a, b) => (b.ImageUrl ? 1 : 0) - (a.ImageUrl ? 1 : 0));
         break;
-      case 'artistAsc':
+      case "artistAsc":
         sorted.sort((a, b) => a.ArtistName.localeCompare(b.ArtistName));
         break;
-      case 'titleAsc':
-        sorted.sort((a, b) => a.ArticleClassification.localeCompare(b.ArticleClassification));
+      case "titleAsc":
+        sorted.sort((a, b) =>
+          a.ArticleClassification.localeCompare(b.ArticleClassification)
+        );
         break;
-      case 'idAsc':
+      case "idAsc":
         sorted.sort((a, b) => a.ArticleId - b.ArticleId);
         break;
-      case 'idDesc':
+      case "idDesc":
         sorted.sort((a, b) => b.ArticleId - a.ArticleId);
         break;
     }
@@ -32,78 +35,80 @@ export default function ResultContainer() {
   return (
     <div className="SearchResultContainer">
       <div className="filterContainer">
-        <p>Results</p>
+      <p>{sortedResponse ? `(${sortedResponse.length} Results)` : "Results Container"}</p>
         <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
-            style={{border: "#F7E7DC"}}
+            style={{ border: "#F7E7DC" }}
           >
             Sort Options
           </button>
           <ul className="dropdown-menu">
             <li>
-              <a className="dropdown-item" href="#" onClick={() => sortResults('hasImage')}>
+              <a
+                className="dropdown-item"
+                href="#"
+                onClick={() => sortResults("hasImage")}
+              >
                 Has Image
               </a>
             </li>
             <li>
-              <a className="dropdown-item" href="#" onClick={() => sortResults('artistAsc')}>
+              <a
+                className="dropdown-item"
+                href="#"
+                onClick={() => sortResults("artistAsc")}
+              >
                 Artist Alphabetical
               </a>
             </li>
             <li>
-              <a className="dropdown-item" href="#" onClick={() => sortResults('titleAsc')}>
+              <a
+                className="dropdown-item"
+                href="#"
+                onClick={() => sortResults("titleAsc")}
+              >
                 Title Alphabetical
               </a>
             </li>
             <li>
-              <a className="dropdown-item" href="#" onClick={() => sortResults('idAsc')}>
+              <a
+                className="dropdown-item"
+                href="#"
+                onClick={() => sortResults("idAsc")}
+              >
                 ID Asc
               </a>
             </li>
             <li>
-              <a className="dropdown-item" href="#" onClick={() => sortResults('idDesc')}>
+              <a
+                className="dropdown-item"
+                href="#"
+                onClick={() => sortResults("idDesc")}
+              >
                 ID Desc
               </a>
             </li>
           </ul>
         </div>
       </div>
-      {sortedResponse ? (
-        sortedResponse.map((element, index) => (
-          <div key={index} className="searchResult">
-            <div className="seachResult_img">
-              {element.ImageUrl ? (
-                <img
-                  src={element.ImageUrl}
-                  alt=""
-                  style={{ maxHeight: "200px", maxWidth: "200px" }}
-                />
-              ) : (
-                <img
-                  src="https://www.svgrepo.com/show/508699/landscape-placeholder.svg"
-                  alt=""
-                  style={{ maxHeight: "200px", maxWidth: "200px" }}
-                />
-              )}
-            </div>
-            <div className="searchResult_content">
-              <ul>
-                <li>{`Artist : ${element.ArtistName}`}</li>
-                <li>{`Acquisition Method : ${element.CreditLine}`}</li>
-                <li>{`Category : ${element.ArticleDivision}`}</li>
-                <li>{`Article ID : ${element.ArticleId}`}</li>
-                <li>{`Article Medium : ${element.ArticleClassification}`}</li>
-              </ul>
-            </div>
+      <div className="searchResultGrid">
+        {isLoading ? (
+          <div>
+          <div className="spinner-border" role="status"></div>
+          <h5>Loading...</h5>
           </div>
-        ))
-      ) : (
-        <p>No results yet</p>
-      )}
+        ) : sortedResponse ? (
+          sortedResponse.map((element, index) => (
+            <ItemCard element={element} index={index} key={index} />
+          ))
+        ) : (
+          <p>No results yet</p>
+        )}
+      </div>
     </div>
   );
 }
