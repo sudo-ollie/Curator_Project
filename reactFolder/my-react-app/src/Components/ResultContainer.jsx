@@ -1,13 +1,17 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { SearchContext } from "./ResultsWrapper";
 import ItemCard from "./ItemCard";
 
 export default function ResultContainer() {
   const { apiResponse, isLoading } = useContext(SearchContext);
-  const [sortedResponse, setSortedResponse] = useState(apiResponse);
+  const [sortedResponse, setSortedResponse] = useState([]);
+
+  useEffect(() => {
+    setSortedResponse(apiResponse);
+  }, [apiResponse]);
 
   function sortResults(criteria) {
-    let sorted = [...apiResponse];
+    let sorted = [...sortedResponse];
 
     switch (criteria) {
       case "hasImage":
@@ -32,10 +36,30 @@ export default function ResultContainer() {
     setSortedResponse(sorted);
   }
 
+  let content;
+  if (isLoading) {
+    content = (
+      <div>
+        <div className="spinner-border" role="status"></div>
+        <h5>Loading...</h5>
+      </div>
+    );
+  } else if (sortedResponse && sortedResponse.length > 0) {
+    content = sortedResponse.map((element, index) => (
+      <ItemCard element={element} index={index} key={index} />
+    ));
+  } else {
+    content = <p>No results yet</p>;
+  }
+
   return (
     <div className="SearchResultContainer">
       <div className="filterContainer">
-      <p>{sortedResponse ? `(${sortedResponse.length} Results)` : "Results Container"}</p>
+        <p>
+          {sortedResponse
+            ? `(${sortedResponse.length} Results Found)`
+            : "Results Container"}
+        </p>
         <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"
@@ -95,20 +119,7 @@ export default function ResultContainer() {
           </ul>
         </div>
       </div>
-      <div className="searchResultGrid">
-        {isLoading ? (
-          <div>
-          <div className="spinner-border" role="status"></div>
-          <h5>Loading...</h5>
-          </div>
-        ) : sortedResponse ? (
-          sortedResponse.map((element, index) => (
-            <ItemCard element={element} index={index} key={index} />
-          ))
-        ) : (
-          <p>No results yet</p>
-        )}
-      </div>
+      <div className="searchResultGrid">{content}</div>
     </div>
   );
 }
