@@ -2,15 +2,21 @@ import { useContext } from "react";
 import axios from "axios";
 import { SearchContext } from "./ResultsWrapper";
 
-export default function SearchButton({ validSearch }) {
+export default function SearchButton({ validSearch , reqBody }) {
   const { setApiResponse, setIsLoading, searchTerm } = useContext(SearchContext);
+
+  const config = {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  };
 
   async function handleSearch() {
     if (validSearch) {
       try {
         console.log("Req Sent");
         setIsLoading(true);
-        const response = await axios.get(`https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/Development/test_item`);
+        const response = await axios.post('https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/itemSearch', reqBody, config);
         setApiResponse(response.data);
       } catch (error) {
         console.log(`ERROR : ${error.message}`);

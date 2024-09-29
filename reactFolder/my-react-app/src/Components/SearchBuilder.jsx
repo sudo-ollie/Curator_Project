@@ -6,10 +6,24 @@ import { SearchContext } from "./ResultsWrapper";
 export default function SearchBuilder() {
   const { searchTerm, setSearchTerm, itemType, setItemType } = useContext(SearchContext);
   const [validSearch, setValidSearch] = useState(false);
+  const [reqBody, setReqBody] = useState({})
 
   useEffect(() => {
     setValidSearch(searchTerm.length > 0 && searchTerm.trim() !== "");
   }, [searchTerm]);
+
+  useEffect(() => {
+    setReqBody(
+      {
+        "keyword": "landscape",
+        "medium": "oil",
+        "hasimage": "1",
+        "location": "France",
+        "classification": ["Paintings","Picture"],
+        "title": "River"
+      }
+    )
+  } ,[searchTerm])
 
   return (
     <>
@@ -35,7 +49,7 @@ export default function SearchBuilder() {
         </div>
       </div>
       <div className="SearchBtnDiv">
-        <SearchButton validSearch={validSearch} />
+        <SearchButton validSearch={validSearch} reqBody={reqBody}/>
       </div>
     </>
   );
