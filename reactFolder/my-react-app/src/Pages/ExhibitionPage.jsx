@@ -14,8 +14,14 @@ function ExhibitionPage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const config = {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        };
         const response = await axios.get(
-          `https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/loadExhibit?exhibitionID=${id}`
+          `https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/loadExhibit?exhibitionID=${id}`,
+          config
         );
         setItemData(response.data.exhibitions[0]);
         setLoading(false);

@@ -27,7 +27,13 @@ function CreateExhib({ likedItems, userID }) {
 
     console.log(requestPayload)
 
-    let response = axios.post("https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/createExhibit" , requestPayload)
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    };
+
+    let response = axios.post("https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/createExhibit" , requestPayload, config)
     console.log(response.status)
     setIsModalOpen(false);
   };

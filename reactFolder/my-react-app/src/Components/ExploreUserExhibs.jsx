@@ -12,8 +12,13 @@ function ExploreUserExhibs({ userID }) {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
+        const config = {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        };
         const response = await axios.get(
-          `https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/userExhibitions?userID=${userID}`
+          `https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/userExhibitions?userID=${userID}`,config
         );
         if (response.data && Array.isArray(response.data.exhibitions)) {
           setUserExhibitions(response.data.exhibitions);

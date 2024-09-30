@@ -12,8 +12,13 @@ function ExplorePubExhibs() {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
+        const config = {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        };
         const response = await axios.get(
-          `https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/publicExhibitions`
+          `https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/publicExhibitions`,config
         );
         if (response.data && Array.isArray(response.data.exhibitions)) {
           setUserExhibitions(response.data.exhibitions);

@@ -13,8 +13,13 @@ function PublicExhibitions({ userID }) {
       try {
         setIsLoading(true);
         setError(null);
+        const config = {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        };
         const response = await axios.get(
-          "https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/publicExhibitions"
+          "https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/publicExhibitions",config
         );
         setPublicExhibitions(response.data.exhibitions);
       } catch (error) {

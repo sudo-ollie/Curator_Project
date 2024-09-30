@@ -13,9 +13,14 @@ function UserExhibitions({ userID }) {
       try {
         setIsLoading(true);
         setError(null);
+        const config = {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        };
         const response = await axios.get(
           `https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/userExhibitions?userID=${userID}`,
-  
+          config
         );
         setUserExhibitions(response.data.exhibitions);
       } catch (error) {
