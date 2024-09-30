@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --gap: 6px;
+  --radius: 20px;
+  --bg-colour: #f7e7dc;
+  --text-colour: #405d72;
+  --middle-colour: #758694;
+}
+
+#ContentContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 1rem;
+  background-color: #f7e7dc;
+  max-height: 100vh;
+}
+
+.MainContent {
+  background-color: hsl(207, 13%, 52%);
+  flex: 1;
+  border-radius: var(--radius);
+  text-align: center;
+  padding: var(--gap);
+  overflow: hidden;
+}
+
+.MainContentInner {
+  background-color: var(--bg-colour);
+  width: 100%;
+  height: 100%;
+  border-radius: calc(var(--radius) - var(--gap));
+  overflow: auto;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.titleDiv {
+  width: 100%;
+  height: 5%;
+  border-radius: calc(var(--radius) - var(--gap));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: var(--gap) solid var(--middle-colour); */
+}
+
+.titleDiv h4 {
+  padding: 0;
+  margin: 0;
+  color: var(--text-colour);
+}
+
+.contentDiv {
+  width: 100%;
+  height: 95%;
+  border-radius: calc(var(--radius) - var(--gap));
+  border: var(--gap) solid var(--middle-colour);
+}
