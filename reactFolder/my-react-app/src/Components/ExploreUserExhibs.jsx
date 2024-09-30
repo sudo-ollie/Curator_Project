@@ -50,9 +50,18 @@ function ExploreUserExhibs({ userID }) {
     );
   } else {
     content = (
-      <div className="searchResultGrid">
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(20%, 1fr))',
+        gap: '1rem',
+        width: '100%'
+      }}>
         {userExhibitions.map((exhibition, index) => (
-          <div key={index} className="item-wrapper">
+          <div key={index} style={{
+            width: '100%',
+            minWidth: '250px',
+            maxWidth: '100%',
+          }}>
             <ExhibitionCard exhibitionObject={exhibition} index={index} />
           </div>
         ))}
@@ -64,14 +73,23 @@ function ExploreUserExhibs({ userID }) {
     <div id="ContentContainer">
       <TopBar />
       <div className="MainContent">
-        <div className="MainContentInner">
-          <div className="titleDiv">
+        <div className="MainContentInner" style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'stretch',
+          height: '100%',
+          padding: '1rem',
+          gap: '1rem'
+        }}>
+          <div className="titleDiv" style={{ marginBottom: '1rem' }}>
             <h4>Your Exhibitions</h4>
             {userExhibitions && userExhibitions.length > 0 && (
               <h6>Total Exhibitions: {userExhibitions.length}</h6>
             )}
           </div>
-          {content}
+          <div style={{ flex: 1, overflowY: 'auto' }}>
+            {content}
+          </div>
         </div>
       </div>
     </div>
