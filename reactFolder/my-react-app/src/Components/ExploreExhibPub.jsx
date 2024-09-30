@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import ExhibitionCard from "./ExhibitionCard";
 import "../Styling/ExplorePublicExhib.css";
+import axios from "axios";
 
-function ExploreExhibPub({ userID }) {
+function ExploreExhibitions_Page({ userID }) {
   const [publicExhibitions, setPublicExhibitions] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -12,14 +13,10 @@ function ExploreExhibPub({ userID }) {
       try {
         setIsLoading(true);
         setError(null);
-        const response = await fetch(
-          `https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/publicExhibitions`
+        const response = await axios.get(
+          'https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/publicExhibitions'
         );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-        setPublicExhibitions(result.exhibitions);
+        setPublicExhibitions(response.data.exhibitions);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError("An Error Occurred");
@@ -27,7 +24,7 @@ function ExploreExhibPub({ userID }) {
         setIsLoading(false);
       }
     };
-
+  
     fetchData();
   }, [userID]);
 
@@ -37,16 +34,6 @@ function ExploreExhibPub({ userID }) {
 
   return (
     <div className="publicExhibitionContainer">
-      {/* <div className="titleContainer">
-        <h4>Public Exhibitions</h4>
-        {publicExhibitions.length === 0 ? (
-          <p>No public exhibtions found, be the first to make one!</p>
-        ) : publicExhibitions.length > 1 ? (
-          <p>{publicExhibitions.length} exhibitions found</p>
-        ) : (
-          <p>{publicExhibitions.length} exhibition found</p>
-        )}
-      </div> */}
       <div className="exhibitionResults">
         {publicExhibitions.length === 0 ? (
           <p>No public exhibitions found.</p>
@@ -60,4 +47,4 @@ function ExploreExhibPub({ userID }) {
   );
 }
 
-export default ExploreExhibPub;
+export default ExploreExhibitions_Page;

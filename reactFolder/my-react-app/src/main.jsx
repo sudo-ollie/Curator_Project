@@ -7,15 +7,20 @@ import "../src/Styling/btn_styling.css";
 import { ClerkProvider } from "@clerk/clerk-react";
 import MyExhibitionsPage from './Pages/MyExhibitions.jsx';
 import ExploreExhibitionsPage from './Pages/ExploreExhibitions.jsx';
+import { LikedItemsProvider } from './Components/LikedItemsProvider';
+import ExhibitionPage from './Pages/ExhibitionPage.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <ClerkProvider publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/MyExhibitions" element={<MyExhibitionsPage />} />
-        <Route path="/ExploreExhibitions" element={<ExploreExhibitionsPage />} />
-      </Routes>
-    </Router>
-  </ClerkProvider>
+  <LikedItemsProvider>
+    <ClerkProvider publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/MyExhibitions" element={<MyExhibitionsPage />} />
+          <Route path="/ExploreExhibitions" element={<ExploreExhibitionsPage />} />
+          <Route path="/Exhibition/:id" element={<ExhibitionPage />} />
+        </Routes>
+      </Router>
+    </ClerkProvider>
+  </LikedItemsProvider>
 );

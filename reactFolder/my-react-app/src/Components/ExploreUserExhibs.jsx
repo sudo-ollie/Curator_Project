@@ -1,37 +1,37 @@
 import { useEffect, useState } from "react";
 import ExhibitionCard from "./ExhibitionCard";
 import "../Styling/publicExhibitions.css";
+import axios from "axios";
 
-function ExploreUserExhibitions({ userID, userName }) {
+function MyExibitions_Page({ userID }) {
   const [userExhibitions, setUserExhibitions] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchUserData = async () => {
       try {
         setIsLoading(true);
         setError(null);
-        const response = await fetch(
-          `https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/userExhibitions?userID=${userID}`
+        const response = await axios.get(
+          `https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/userExhibitions?userID=${userID}`,
         );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-        setUserExhibitions(result.exhibitions);
+        console.log(`USER-ID : ${userID}`)
+        console.log(response.data)
+        setUserExhibitions(response.data.exhibitions);
       } catch (error) {
-        console.error("Error fetching data:", error);
+        console.error("Error fetching user data:", error);
         setError("An Error Occurred");
       } finally {
         setIsLoading(false);
       }
     };
-
-    fetchData();
+  
+    fetchUserData();
   }, [userID]);
 
   if (isLoading) return <div>Loading exhibitions...</div>;
+  if (error) return <div>Error Fetching Exhibitions. Try again</div>
   if (!userExhibitions) return <div>No exhibition data available</div>;
 
   return (
@@ -53,4 +53,4 @@ function ExploreUserExhibitions({ userID, userName }) {
   );
 }
 
-export default ExploreUserExhibitions;
+export default MyExibitions_Page;

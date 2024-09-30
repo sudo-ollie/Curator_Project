@@ -37,7 +37,7 @@ function PublicExhibitions({ userID }) {
 
   return (
     <div className="publicExhibitionContainer">
-      <div className="titleContainer">
+      <div className="titleContainer" style={{backgroundColor: "#f7e7dc"}}>
         <h4>Public Exhibitions</h4>
         {publicExhibitions.length === 0 ? (
           <p>No public exhibtions found, be the first to make one!</p>
@@ -55,9 +55,6 @@ function PublicExhibitions({ userID }) {
             <ExhibitionCard exhibitionObject={exhibition} key={index} />
           ))
         )}
-      </div>
-      <div className="buttonContainer">
-        <button>Explore More</button>
       </div>
     </div>
   );

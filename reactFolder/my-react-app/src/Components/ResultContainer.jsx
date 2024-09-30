@@ -1,10 +1,18 @@
 import { useContext, useState, useEffect } from "react";
+import { LoadLikedItems } from './LoadLikedItems';
 import { SearchContext } from "./ResultsWrapper";
+import CreateExhib from "./CreateExhib";
 import ItemCard from "./ItemCard";
+import { useUser } from "@clerk/clerk-react";
+
+
+
 
 export default function ResultContainer() {
+  const { likedItems, addLikedItem, removeLikedItem, isItemLiked } = LoadLikedItems();
   const { apiResponse, isLoading } = useContext(SearchContext);
   const [sortedResponse, setSortedResponse] = useState([]);
+  const { user, isLoaded, isSignedIn } = useUser();
 
   useEffect(() => {
     setSortedResponse(apiResponse);
@@ -60,6 +68,16 @@ export default function ResultContainer() {
             ? `(${sortedResponse.length} Results Found)`
             : "Results Container"}
         </p>
+        <div className="creatorContainer">
+          <p>{likedItems.length} Items Selected</p>
+          {isLoaded && isSignedIn && user?.id ? (
+            <CreateExhib likedItems={likedItems} userID={user.id}/>
+          ) : isLoaded && !isSignedIn ? (
+            <p>Please sign in to create an exhibit</p>
+          ) : (
+            <p>Loading user data...</p>
+          )}
+        </div>
         <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"

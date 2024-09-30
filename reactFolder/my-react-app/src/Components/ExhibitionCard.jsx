@@ -1,11 +1,9 @@
-import "../Styling/publicExhibitions.css";
+import "../Styling/ExhibitionCardStyling.css";
+import { useNavigate } from 'react-router-dom';
+
 
 function ExhibitionCard({ exhibitionObject }) {
-  console.log(
-    exhibitionObject.ExhibitionID,
-    ":",
-    Object.keys(exhibitionObject)
-  );
+  const navigate = useNavigate();
 
   return (
     <div className="exhibitionIndividual">
@@ -27,10 +25,13 @@ function ExhibitionCard({ exhibitionObject }) {
         <p>Exhibit Length : {exhibitionObject.ExhibitionLength}</p>
       </div>
       <div className="footerDiv">
-        <button type="button" className="btn btn-secondary explore-btn">
-          Explore Exhibition
-        </button>
-        {/* <p>Exhibition : {exhibitionObject.ExhibitionID}</p> */}
+      <button
+      type="button"
+      className="btn btn-secondary explore-btn"
+      onClick={() => navigate(`/Exhibition/${exhibitionObject.ExhibitionID}`)}
+    >
+      Explore Exhibition
+    </button>
       </div>
     </div>
   );

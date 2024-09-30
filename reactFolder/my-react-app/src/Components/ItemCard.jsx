@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../Styling/ItemCardStyling.css";
+import { LoadLikedItems } from "./LoadLikedItems";
 
 export default function ItemCard({ element, index }) {
+  const { addLikedItem, removeLikedItem, isItemLiked } = LoadLikedItems();
   const [favourite, setFavourite] = useState(false);
 
+  useEffect(() => {
+    setFavourite(isItemLiked(element.ArticleId));
+  }, [element.ArticleId, isItemLiked]);
+
   function handleLike() {
+    if (favourite) {
+      removeLikedItem(element.ArticleId);
+    } else {
+      addLikedItem(element);
+    }
     setFavourite(!favourite);
   }
 
@@ -23,12 +34,12 @@ export default function ItemCard({ element, index }) {
       </div>
       <div className="ItemCardContent">
         <div className="ItemCardTitle">
-          <h3>Item Title : X</h3>
+          <h3>Item Title : {element.Title || "Unknown"}</h3>
           <h5>{element.ArtistName}</h5>
         </div>
         <div className="ItemCardDetails">
           <div className="fieldContainer">
-            <p id="content">X</p>
+            <p id="content">{element.Century || "Unknown"}</p>
             <p id="subHeading">Century</p>
           </div>
           <div className="fieldContainer">
@@ -40,7 +51,7 @@ export default function ItemCard({ element, index }) {
             <p id="subHeading">Category</p>
           </div>
           <div className="fieldContainer">
-            <p id="content">{element.ArticleId}</p>
+            <p id="content">{element.CreditLine || "Unknown"}</p>
             <p id="subHeading">Credit Line</p>
           </div>
           <div className="fieldContainer">

@@ -1,10 +1,10 @@
 import "../Styling/exploreExhib.css";
 import TopBar from "../Components/TopBar";
-import { SignedIn, SignedOut, useUser } from "@clerk/clerk-react";
-import ExploreUserExhibitions from "../Components/ExploreUserExhibs";
+// import { SignedIn, SignedOut, useUser } from "@clerk/clerk-react";
+import ExploreExhibPub from "../Components/ExploreExhibPub";
 
 function ExploreExhibitionsPage() {
-  const { isSignedIn, user } = useUser();
+  // const { isSignedIn, user } = useUser();
   return (
     <div id="ContentContainer">
       <TopBar />
@@ -14,7 +14,7 @@ function ExploreExhibitionsPage() {
             <h4>Explore Public Exhibitions</h4>
           </div>
           <div className="contentDiv">
-            <ExploreUserExhibitions />
+          <ExploreExhibPub />
           </div>
         </div>
       </div>

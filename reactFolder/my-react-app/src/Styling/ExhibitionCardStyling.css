@@ -1,0 +1,51 @@
+.exhibitionIndividual {
+  background-color: var(--middle-colour);
+  border: 2px solid var(--text-colour);
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.exhibitionIndividual .exhibImageContainer {
+  display: flex;
+  justify-content: center;
+  height: 70%;
+}
+
+.exhibitionIndividual .exhibImageContainer img {
+  width: 100%;
+  height: 100%;
+  border-radius: 15px 15px 0 0;
+  object-fit: cover;
+}
+
+.exhibitionIndividual .exhibContentContainer {
+  text-align: left;
+  margin-top: 0.5rem;
+  color: var(--bg-colour);
+}
+
+.titleContent {
+  border-bottom: 2px dashed var(--bg-colour);
+  margin-bottom: 0.5rem;
+}
+
+.titleContent h5 {
+  margin: 0;
+  padding: 0;
+}
+
+.titleContent p {
+  margin: 0.2rem 0rem 0.2rem 0rem;
+}
+
+.footerDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  margin-top: 0.5rem;
+  text-align: right;
+}
