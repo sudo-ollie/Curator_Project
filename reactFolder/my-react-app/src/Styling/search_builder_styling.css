@@ -1,26 +1,103 @@
 .SearchInputDiv {
   padding: 1rem;
+  background-color: #6c7a89;
+  border-radius: 10px;
 }
 
-h5 {
-  margin-top: 0.3rem;
+.SearchInputDiv h5 {
   color: #F7E7DC;
+  text-align: center;
+}
+
+.input-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
 }
 
 .inline-display {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  width: 32%;
 }
 
 .inline-display label {
   color: #F7E7DC;
-  font-size: large;
-  font-weight: 700;
-  margin-right: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  text-align: center;
 }
 
 .inline-display input {
-  height: 2rem;
+  height: 1.75rem;
   padding: 0 0.5rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 5px;
+}
+
+.last-row {
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.last-row .inline-display {
+  width: 32%;
+}
+
+.SearchBtnDiv {
+  display: flex;
+  align-items: flex-end;
+}
+
+.search-button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  height: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.SearchBtnDiv {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 32%;
+}
+
+.hasImageToggle {
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.hasImageToggle input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
+.hasImageToggle label {
+  color: #F7E7DC;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.search-button {
+  background-color: #f0f0f0;
+  border: none;
+  padding: 0.35rem 0.75rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  height: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

@@ -1,15 +1,12 @@
 import { useContext, useState, useEffect } from "react";
-import { LoadLikedItems } from './LoadLikedItems';
+import { LoadLikedItems } from "./LoadLikedItems";
 import { SearchContext } from "./ResultsWrapper";
 import CreateExhib from "./CreateExhib";
 import ItemCard from "./ItemCard";
 import { useUser } from "@clerk/clerk-react";
 
-
-
-
 export default function ResultContainer() {
-  const { likedItems, addLikedItem, removeLikedItem, isItemLiked } = LoadLikedItems();
+  const { likedItems } = LoadLikedItems();
   const { apiResponse, isLoading } = useContext(SearchContext);
   const [sortedResponse, setSortedResponse] = useState([]);
   const { user, isLoaded, isSignedIn } = useUser();
@@ -20,18 +17,25 @@ export default function ResultContainer() {
 
   function sortResults(criteria) {
     let sorted = [...sortedResponse];
-
     switch (criteria) {
       case "hasImage":
         sorted.sort((a, b) => (b.ImageUrl ? 1 : 0) - (a.ImageUrl ? 1 : 0));
         break;
-      case "artistAsc":
-        sorted.sort((a, b) => a.ArtistName.localeCompare(b.ArtistName));
-        break;
+        case "artistAsc":
+          sorted.sort((a, b) => {
+            if (a.ArtistName == null && b.ArtistName == null) {
+              return 0; // Both are null, consider them equal
+            } else if (a.ArtistName == null) {
+              return 1; // Null values should come last, so a is "greater"
+            } else if (b.ArtistName == null) {
+              return -1; // Null values should come last, so b is "greater"
+            } else {
+              return a.ArtistName.localeCompare(b.ArtistName);
+            }
+          });
+          break;
       case "titleAsc":
-        sorted.sort((a, b) =>
-          a.ArticleClassification.localeCompare(b.ArticleClassification)
-        );
+        sorted.sort((a, b) => a.Title.localeCompare(b.Title));
         break;
       case "idAsc":
         sorted.sort((a, b) => a.ArticleId - b.ArticleId);
@@ -54,7 +58,9 @@ export default function ResultContainer() {
     );
   } else if (sortedResponse && sortedResponse.length > 0) {
     content = sortedResponse.map((element, index) => (
-      <ItemCard element={element} index={index} key={index} />
+      <div key={index} className="item-wrapper">
+        <ItemCard element={element} index={index} />
+      </div>
     ));
   } else {
     content = <p>No results yet</p>;
@@ -71,7 +77,7 @@ export default function ResultContainer() {
         <div className="creatorContainer">
           <p>{likedItems.length} Items Selected</p>
           {isLoaded && isSignedIn && user?.id ? (
-            <CreateExhib likedItems={likedItems} userID={user.id}/>
+            <CreateExhib likedItems={likedItems} userID={user.id} />
           ) : isLoaded && !isSignedIn ? (
             <p>Please sign in to create an exhibit</p>
           ) : (
@@ -137,7 +143,9 @@ export default function ResultContainer() {
           </ul>
         </div>
       </div>
-      <div className="searchResultGrid">{content}</div>
+      <div className="searchResultGrid searchResultGridContainer">
+        {content}
+      </div>
     </div>
   );
 }

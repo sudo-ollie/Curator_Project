@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ExhibitionCard from "./ExhibitionCard";
 import "../Styling/publicExhibitions.css";
+import axios from "axios";
 
 function PublicExhibitions({ userID }) {
   const [publicExhibitions, setPublicExhibitions] = useState(null);
@@ -12,14 +13,10 @@ function PublicExhibitions({ userID }) {
       try {
         setIsLoading(true);
         setError(null);
-        const response = await fetch(
-          `https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/publicExhibitions`
+        const response = await axios.get(
+          "https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/publicExhibitions"
         );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const result = await response.json();
-        setPublicExhibitions(result.exhibitions);
+        setPublicExhibitions(response.data.exhibitions);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError("An Error Occurred");
@@ -36,25 +33,25 @@ function PublicExhibitions({ userID }) {
   if (!publicExhibitions) return <div>No exhibition data available</div>;
 
   return (
-    <div className="publicExhibitionContainer">
-      <div className="titleContainer" style={{backgroundColor: "#f7e7dc"}}>
+    <div className="BottomRightInner">
+      <div className="titleContainer">
         <h4>Public Exhibitions</h4>
         {publicExhibitions.length === 0 ? (
-          <p>No public exhibtions found, be the first to make one!</p>
+          <h6>No public exhibtions found, be the first to make one!</h6>
         ) : publicExhibitions.length > 1 ? (
-          <p>{publicExhibitions.length} exhibitions found</p>
+          <h6>{publicExhibitions.length} exhibitions found</h6>
         ) : (
-          <p>{publicExhibitions.length} exhibition found</p>
+          <h6>{publicExhibitions.length} exhibition found</h6>
         )}
       </div>
       <div className="exhibitionResults">
         {publicExhibitions.length === 0 ? (
           <p>No public exhibitions found.</p>
-        ) : (
-          publicExhibitions.map((exhibition, index) => (
-            <ExhibitionCard exhibitionObject={exhibition} key={index} />
-          ))
-        )}
+          ) : (
+            publicExhibitions.map((exhibition, index) => (
+              <ExhibitionCard exhibitionObject={exhibition} key={index} />
+              ))
+              )}
       </div>
     </div>
   );

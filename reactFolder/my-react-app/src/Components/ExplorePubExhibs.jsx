@@ -4,7 +4,7 @@ import TopBar from "../Components/TopBar";
 import ExhibitionCard from "./ExhibitionCard";
 import "../Styling/MyExhibitionsStyling.css"
 
-function ExploreUserExhibs({ userID }) {
+function ExplorePubExhibs() {
   const [userExhibitions, setUserExhibitions] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ function ExploreUserExhibs({ userID }) {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(
-          `https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/userExhibitions?userID=${userID}`
+          `https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/publicExhibitions`
         );
         if (response.data && Array.isArray(response.data.exhibitions)) {
           setUserExhibitions(response.data.exhibitions);
@@ -29,7 +29,7 @@ function ExploreUserExhibs({ userID }) {
     };
 
     fetchUserData();
-  }, [userID]);
+  }, []);
 
   let content;
   if (loading) {
@@ -66,7 +66,7 @@ function ExploreUserExhibs({ userID }) {
       <div className="MainContent">
         <div className="MainContentInner">
           <div className="titleDiv">
-            <h4>Your Exhibitions</h4>
+            <h4>Explore Public Exhibitions</h4>
             {userExhibitions && userExhibitions.length > 0 && (
               <h6>Total Exhibitions: {userExhibitions.length}</h6>
             )}
@@ -78,4 +78,4 @@ function ExploreUserExhibs({ userID }) {
   );
 }
 
-export default ExploreUserExhibs;
+export default ExplorePubExhibs;

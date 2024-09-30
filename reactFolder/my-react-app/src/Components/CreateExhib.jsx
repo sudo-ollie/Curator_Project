@@ -12,12 +12,9 @@ function CreateExhib({ likedItems, userID }) {
   useEffect(() => {
     if (likedItems.length > 0 && likedItems[0].ImageUrl) {
       setImageUrl(likedItems[0].ImageUrl);
-    } else {
-      console.log("No image URL available in likedItems");
     }
   }, [likedItems]);
 
-  console.log("?" , userID)
 
   const handleSaveExhibition = () => {
     let requestPayload = {
@@ -28,7 +25,8 @@ function CreateExhib({ likedItems, userID }) {
       exhibItems: likedItems,
     };
 
-    console.log("Saving exhibition:", requestPayload);
+    console.log(requestPayload)
+
     let response = axios.post("https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/createExhibit" , requestPayload)
     console.log(response.status)
     setIsModalOpen(false);
@@ -36,7 +34,7 @@ function CreateExhib({ likedItems, userID }) {
 
   return (
     <>
-      <Button variant="primary" onClick={() => setIsModalOpen(true)}>
+      <Button variant="primary" style={{ border: "#F7E7DC" }} onClick={() => setIsModalOpen(true)}>
         Save Exhibition
       </Button>
 

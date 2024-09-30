@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ExhibitionCard from "./ExhibitionCard";
-import "../Styling/publicExhibitions.css";
+import "../Styling/YourExhibitionStyling.css";
 
 function UserExhibitions({ userID }) {
   const [userExhibitions, setUserExhibitions] = useState(null);
@@ -34,19 +34,25 @@ function UserExhibitions({ userID }) {
   if (!userExhibitions) return <div>No exhibition data available</div>;
 
   return (
-    <div className="publicExhibitionContainer">
+    <div className="TopRightInner">
       <div className="titleContainer">
         <h4>Your Exhibitions</h4>
-        <p>{userExhibitions.length} exhibition(s) found</p>
+        {userExhibitions.length === 0 ? (
+          <h6>No public exhibtions found, be the first to make one!</h6>
+        ) : userExhibitions.length > 1 ? (
+          <h6>{userExhibitions.length} exhibitions found</h6>
+        ) : (
+          <h6>{userExhibitions.length} exhibition found</h6>
+        )}
       </div>
       <div className="exhibitionResults">
         {userExhibitions.length === 0 ? (
           <p>No public exhibitions found.</p>
-        ) : (
-          userExhibitions.map((exhibition, index) => (
-            <ExhibitionCard exhibitionObject={exhibition} key={index} />
-          ))
-        )}
+          ) : (
+            userExhibitions.map((exhibition, index) => (
+              <ExhibitionCard exhibitionObject={exhibition} key={index} />
+              ))
+              )}
       </div>
     </div>
   );

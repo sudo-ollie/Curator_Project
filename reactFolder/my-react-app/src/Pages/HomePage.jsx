@@ -36,9 +36,7 @@ function HomePage() {
               </SignedOut>
           </div>
           <div className="RightContentBottom">
-            <div className="BottomRightInner" style={{padding: "6px"}}>
               <PublicExhibitions />
-            </div>
           </div>
         </div>
       </div>

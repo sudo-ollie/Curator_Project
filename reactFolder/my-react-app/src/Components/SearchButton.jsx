@@ -14,7 +14,6 @@ export default function SearchButton({ validSearch , reqBody }) {
   async function handleSearch() {
     if (validSearch) {
       try {
-        console.log("Req Sent");
         setIsLoading(true);
         const response = await axios.post('https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/itemSearch', reqBody, config);
         setApiResponse(response.data);

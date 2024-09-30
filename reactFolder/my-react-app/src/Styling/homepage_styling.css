@@ -11,6 +11,8 @@
   --bg-colour: #f7e7dc;
   --text-colour: #405d72;
   --middle-colour: #758694;
+  --outer-radius: 20px;
+  --inner-radius: 14px;
 }
 
 /* Ensure the html and body elements take up full height */
@@ -72,7 +74,7 @@ body {
 .SearchContainer {
   background-color: #758694;
   width: 100%;
-  height: 20%;
+  height: 30%;
   padding: var(--gap);
   border-radius: calc(var(--radius) - 2 * var(--gap));
 }
@@ -85,24 +87,17 @@ body {
   flex-direction: column;
 }
 
-.SearchBtnDiv {
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-  padding-top: var(--gap);
-  gap: 0.6%;
-}
-
 .SearchInputDiv {
   border: 3px solid #f7e7dc;
-  height: 85%;
+  height: 100%;
   border-radius: calc(var(--radius) - 2 * var(--gap));
+  overflow: auto;
 }
 .SearchResultContainer {
   background-color: var(--middle-colour);
   width: 100%;
   max-width: 100%;
-  height: 80%;
+  height: 70%;
   display: flex;
   flex-direction: column;
   border-radius: calc(var(--radius) - 2 * var(--gap));
@@ -130,12 +125,8 @@ body {
   flex: 1;
   overflow: hidden;
 }
-.RightContentTop {
-  --outer-radius: 20px;
-  --inner-radius: 14px;
-  --gap: 6px;
 
-  background-color: #758694;
+.RightContentTop {
   margin-bottom: 0.5rem;
   flex: 1;
   border-radius: var(--outer-radius);
@@ -144,7 +135,7 @@ body {
 }
 
 .TopRightInner {
-  background-color: #f7e7dc;
+  background-color: var(--bg-colour);
   width: 100%;
   height: 100%;
   border-radius: var(--inner-radius);
@@ -154,25 +145,24 @@ body {
   overflow: hidden;
 }
 
-/* Right Bottom Content Box */
+/* Bottom Right Div */
 .RightContentBottom {
-  --gap: 6px;
-  --radius: 20px;
-
-  background-color: #758694;
   margin-top: 0.5rem;
   flex: 1;
-  border-radius: var(--radius);
-  text-align: center;
+  border-radius: var(--outer-radius);
   padding: var(--gap);
   overflow: hidden;
 }
+
 .BottomRightInner {
-  background-color: #f7e7dc;
+  background-color: var(--bg-colour);
   width: 100%;
   height: 100%;
-  border-radius: calc(var(--radius) - var(--gap));
-  overflow: auto;
+  border-radius: var(--inner-radius);
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  overflow: hidden;
 }
 
 .searchResult {
@@ -256,24 +246,23 @@ body {
   background-color: #405d72;
 }
 
-.signedOutContainer {
-  --inner-radius: 14px;
-
-  display: flex;
-  flex-direction: column;
-  border-radius: var(--inner-radius);
-
-  background-color: palegoldenrod;
-}
-
 .searchResultGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(25rem, 100%), 1fr));
+  grid-template-columns: repeat(2, 1fr) !important;
   gap: 1rem;
   padding: 1rem;
   width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  box-sizing: border-box;
 }
 
+.searchResultGrid > * {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.creatorContainer p {
+  margin-right: 0.5rem;
+}
+
+.item-wrapper {
+  padding: 10px;
+}

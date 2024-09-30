@@ -7,7 +7,7 @@
   --middle-colour: #758694;
 }
 
-.BottomRightInner {
+.TopRightInner {
   background-color: var(--bg-colour);
   width: 100%;
   height: 100%;
@@ -15,10 +15,11 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  padding: 3px;
 }
 
 /* Title container styles */
-.BottomRightInner .titleContainer {
+.TopRightInner .titleContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,20 +31,20 @@
   padding: 2px;
 }
 
-.BottomRightInner .titleContainer h4 {
+.TopRightInner .titleContainer h4 {
   padding: 0;
   margin-bottom: 2px;
   color: var(--bg-colour);
 }
 
-.BottomRightInner .titleContainer h6 {
+.TopRightInner .titleContainer h6 {
   padding: 0;
   margin: 0;
   color: var(--bg-colour);
 }
 
 /* Exhibition results styles */
-.BottomRightInner .exhibitionResults {
+.TopRightInner .exhibitionResults {
   flex-grow: 1;
   overflow-y: auto;
   padding: 0.6rem;
@@ -57,11 +58,11 @@
 }
 
 /* Hide scrollbar for exhibition results */
-.BottomRightInner .exhibitionResults {
+.TopRightInner .exhibitionResults {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-.BottomRightInner .exhibitionResults::-webkit-scrollbar { 
+.TopRightInner .exhibitionResults::-webkit-scrollbar {
   display: none;
 }
