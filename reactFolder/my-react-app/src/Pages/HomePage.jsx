@@ -18,9 +18,7 @@ function HomePage() {
       <TopBar />
       <div className="MainContent">
         <div className="MainContentLeft">
-          <div className="LeftContentInner">
           <SearchResultWrapper />
-          </div>
         </div>
         <div className="MainContentRight">
           <div className="RightContentTop">

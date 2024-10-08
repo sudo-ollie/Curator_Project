@@ -1,21 +1,25 @@
 /* Root variables */
 :root {
-  --gap: 6px;
-  --radius: 20px;
-  --bg-colour: #f7e7dc;
-  --text-colour: #405d72;
-  --middle-colour: #758694;
+  /* Spacing & Sizing */
+  --border-thickness: 6px;
+  
+  /* Border Values */
+  --rounded-corner: 10px;
+  
+  /* Colours */
+  --white-colour: #f7e7dc;
+  --darkest-colour: #405d72;
+  --text-colour: #758694;
 }
 
 .TopRightInner {
   background-color: var(--bg-colour);
   width: 100%;
   height: 100%;
-  border-radius: calc(var(--radius) - var(--gap));
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 3px;
+  padding: var(--border-thickness);
 }
 
 /* Title container styles */
@@ -25,10 +29,16 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: calc(var(--radius) - var(--gap))
-    calc(var(--radius) - var(--gap)) 0 0;
-  background-color: var(--middle-colour);
+  border-radius: 
+  calc(var(--rounded-corner) - var(--border-thickness))
+  calc(var(--rounded-corner) - var(--border-thickness)) 
+  0 
+  0
+  ;
+  background-color: var(--darkest-colour);
   padding: 2px;
+  min-height: 60px;
+  max-height: 80px;
 }
 
 .TopRightInner .titleContainer h4 {
@@ -47,14 +57,19 @@
 .TopRightInner .exhibitionResults {
   flex-grow: 1;
   overflow-y: auto;
-  padding: 0.6rem;
+  padding: var(--gap);
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
   justify-content: start;
   margin-top: var(--gap);
-  border: 3px solid var(--middle-colour);
-  border-radius: 0 0 calc(var(--radius) - var(--gap)) calc(var(--radius) - var(--gap));
+  border: 6px solid var(--middle-colour);
+  border-radius: 
+  0 
+  0 
+  calc(var(--rounded-corner) - var(--border-thickness)) 
+  calc(var(--rounded-corner) - var(--border-thickness))
+  ;
 }
 
 /* Hide scrollbar for exhibition results */

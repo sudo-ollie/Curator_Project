@@ -51,13 +51,13 @@ function UserExhibitions({ userID }) {
         )}
       </div>
       <div className="exhibitionResults">
-        {userExhibitions.length === 0 ? (
+        {/* {userExhibitions.length === 0 ? (
           <p>No public exhibitions found.</p>
           ) : (
             userExhibitions.map((exhibition, index) => (
               <ExhibitionCard exhibitionObject={exhibition} key={index} />
               ))
-              )}
+              )} */}
       </div>
     </div>
   );

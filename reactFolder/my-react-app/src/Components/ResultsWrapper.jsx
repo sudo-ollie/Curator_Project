@@ -21,8 +21,11 @@ export default function SearchResultWrapper() {
       itemType,
       setItemType
     }}>
+      <div className="LeftContentInner">
       <SearchContainer />
       <ResultContainer />
+      </div>
+
     </SearchContext.Provider>
   );
 }

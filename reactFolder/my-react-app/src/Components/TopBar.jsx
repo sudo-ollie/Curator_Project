@@ -5,7 +5,6 @@ function TopBar() {
   return (
     <div className="TopBar">
       <div className="TopBarInner">
-        <div className="TopBarContent">
           <div className="TopBarLinks">
             <span className="TopBarText prevent-select">&lt;</span>
             <a href="/" className="TopBarText">Home</a>
@@ -20,7 +19,6 @@ function TopBar() {
               <UserButton />
             </div>
           </SignedIn>
-        </div>
       </div>
     </div>
   );

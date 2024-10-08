@@ -11,10 +11,10 @@
   background-color: var(--bg-colour);
   width: 100%;
   height: 100%;
-  border-radius: calc(var(--radius) - var(--gap));
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  padding: var(--border-thickness);
 }
 
 /* Title container styles */
@@ -24,10 +24,16 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: calc(var(--radius) - var(--gap))
-    calc(var(--radius) - var(--gap)) 0 0;
-  background-color: var(--middle-colour);
+  border-radius: 
+  calc(var(--rounded-corner) - var(--border-thickness))
+  calc(var(--rounded-corner) - var(--border-thickness)) 
+  0 
+  0
+  ;
+  background-color: var(--darkest-colour);
   padding: 2px;
+  min-height: 60px;
+  max-height: 80px;
 }
 
 .BottomRightInner .titleContainer h4 {
@@ -46,14 +52,19 @@
 .BottomRightInner .exhibitionResults {
   flex-grow: 1;
   overflow-y: auto;
-  padding: 0.6rem;
+  padding: var(--gap);
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
   justify-content: start;
   margin-top: var(--gap);
-  border: 3px solid var(--middle-colour);
-  border-radius: 0 0 calc(var(--radius) - var(--gap)) calc(var(--radius) - var(--gap));
+  border: 6px solid var(--middle-colour);
+  border-radius: 
+  0 
+  0 
+  calc(var(--rounded-corner) - var(--border-thickness)) 
+  calc(var(--rounded-corner) - var(--border-thickness))
+  ;
 }
 
 /* Hide scrollbar for exhibition results */
