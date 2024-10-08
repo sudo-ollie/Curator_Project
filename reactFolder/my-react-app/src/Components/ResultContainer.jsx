@@ -11,6 +11,8 @@ export default function ResultContainer() {
   const [sortedResponse, setSortedResponse] = useState([]);
   const { user, isLoaded, isSignedIn } = useUser();
 
+  console.log(apiResponse)
+
   useEffect(() => {
     setSortedResponse(apiResponse);
   }, [apiResponse]);
@@ -21,19 +23,19 @@ export default function ResultContainer() {
       case "hasImage":
         sorted.sort((a, b) => (b.ImageUrl ? 1 : 0) - (a.ImageUrl ? 1 : 0));
         break;
-        case "artistAsc":
-          sorted.sort((a, b) => {
-            if (a.ArtistName == null && b.ArtistName == null) {
-              return 0; // Both are null, consider them equal
-            } else if (a.ArtistName == null) {
-              return 1; // Null values should come last, so a is "greater"
-            } else if (b.ArtistName == null) {
-              return -1; // Null values should come last, so b is "greater"
-            } else {
-              return a.ArtistName.localeCompare(b.ArtistName);
-            }
-          });
-          break;
+      case "artistAsc":
+        sorted.sort((a, b) => {
+          if (a.ArtistName == null && b.ArtistName == null) {
+            return 0; // Both are null, consider them equal
+          } else if (a.ArtistName == null) {
+            return 1; // Null values should come last, so a is "greater"
+          } else if (b.ArtistName == null) {
+            return -1; // Null values should come last, so b is "greater"
+          } else {
+            return a.ArtistName.localeCompare(b.ArtistName);
+          }
+        });
+        break;
       case "titleAsc":
         sorted.sort((a, b) => a.Title.localeCompare(b.Title));
         break;
@@ -62,8 +64,11 @@ export default function ResultContainer() {
         <ItemCard element={element} index={index} />
       </div>
     ));
-  } else {
-    content = <p>No results yet</p>;
+  } else if (apiResponse == null) {
+    content = <p> Make a search, to view articles. If your search failed try something less broad.</p>;
+  }
+  else  {
+    content = <p> {apiResponse.length} - Articles Found</p>;
   }
 
   return (
