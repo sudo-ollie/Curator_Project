@@ -8,7 +8,8 @@ export default function SearchButton({ validSearch , reqBody }) {
   const config = {
     headers: {
       'Content-Type': 'application/json'
-    }
+    },
+    timeout: 60000
   };
 
   async function handleSearch() {

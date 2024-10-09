@@ -4,6 +4,7 @@ import { SearchContext } from "./ResultsWrapper";
 import CreateExhib from "./CreateExhib";
 import ItemCard from "./ItemCard";
 import { useUser } from "@clerk/clerk-react";
+import "../Styling/SearchResultStyling.css";
 
 export default function ResultContainer() {
   const { likedItems } = LoadLikedItems();
@@ -11,7 +12,7 @@ export default function ResultContainer() {
   const [sortedResponse, setSortedResponse] = useState([]);
   const { user, isLoaded, isSignedIn } = useUser();
 
-  console.log(apiResponse)
+  console.log(apiResponse);
 
   useEffect(() => {
     setSortedResponse(apiResponse);
@@ -53,104 +54,121 @@ export default function ResultContainer() {
   let content;
   if (isLoading) {
     content = (
-      <div>
-        <div className="spinner-border" role="status"></div>
-        <h5>Loading...</h5>
+      <div className="contentContainer centerSpinner">
+        <div className="spinnerDiv">
+          <div className="spinner-border" role="status"></div>
+          <h5>Content Loading...</h5>
+        </div>
       </div>
     );
   } else if (sortedResponse && sortedResponse.length > 0) {
-    content = sortedResponse.map((element, index) => (
-      <div key={index} className="item-wrapper">
-        <ItemCard element={element} index={index} />
+    content = (
+      <div className="contentContainer gridModifier">
+        {sortedResponse.map((element, index) => (
+          <div key={index} className="item-wrapper">
+            <ItemCard element={element} index={index} />
+          </div>
+        ))}
       </div>
-    ));
+    );
   } else if (apiResponse == null) {
-    content = <p> Make a search, to view articles. If your search failed try something less broad.</p>;
+    content = (
+      <div className="contentContainer centerSpinner">
+        <h5>Make a search to view articles. If your search failed, try something less broad.</h5>
+      </div>
+    );
+  } else {
+    content = (
+      <div className="contentContainer centerSpinner">
+        <h5>{apiResponse.length} - Articles Found</h5>
+      </div>
+    );
   }
-  else  {
-    content = <p> {apiResponse.length} - Articles Found</p>;
-  }
-
   return (
     <div className="SearchResultContainer">
-      <div className="filterContainer">
-        <p>
-          {sortedResponse
-            ? `(${sortedResponse.length} Results Found)`
-            : "Results Container"}
-        </p>
-        <div className="creatorContainer">
-          <p>{likedItems.length} Items Selected</p>
-          {isLoaded && isSignedIn && user?.id ? (
-            <CreateExhib likedItems={likedItems} userID={user.id} />
-          ) : isLoaded && !isSignedIn ? (
-            <p>Please sign in to create an exhibit</p>
-          ) : (
-            <p>Loading user data...</p>
-          )}
+      <div className="titleContainer">
+        <div className="leftContent">
+          <div className="creatorContainer">
+            {isLoaded && isSignedIn && user?.id ? (
+              <CreateExhib likedItems={likedItems} userID={user.id} />
+            ) : isLoaded && !isSignedIn ? (
+              <p>Please sign in to create an exhibit</p>
+            ) : (
+              <p>Loading user data...</p>
+            )}
+            <h6>{likedItems.length} Items Selected</h6>
+          </div>
         </div>
-        <div className="dropdown">
-          <button
-            className="btn btn-secondary dropdown-toggle"
-            type="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-            style={{ border: "#F7E7DC" }}
-          >
-            Sort Options
-          </button>
-          <ul className="dropdown-menu">
-            <li>
-              <a
-                className="dropdown-item"
-                href="#"
-                onClick={() => sortResults("hasImage")}
-              >
-                Has Image
-              </a>
-            </li>
-            <li>
-              <a
-                className="dropdown-item"
-                href="#"
-                onClick={() => sortResults("artistAsc")}
-              >
-                Artist Alphabetical
-              </a>
-            </li>
-            <li>
-              <a
-                className="dropdown-item"
-                href="#"
-                onClick={() => sortResults("titleAsc")}
-              >
-                Title Alphabetical
-              </a>
-            </li>
-            <li>
-              <a
-                className="dropdown-item"
-                href="#"
-                onClick={() => sortResults("idAsc")}
-              >
-                ID Asc
-              </a>
-            </li>
-            <li>
-              <a
-                className="dropdown-item"
-                href="#"
-                onClick={() => sortResults("idDesc")}
-              >
-                ID Desc
-              </a>
-            </li>
-          </ul>
+        <div className="centerContent">
+          <h4>Results Container</h4>
+          <h6>
+            {sortedResponse
+              ? `(${sortedResponse.length} Results Found)`
+              : "No Results"}
+          </h6>
+        </div>
+        <div className="rightContent">
+          <div className="dropdown">
+            <button
+              className="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style={{ border: "#F7E7DC" }}
+            >
+              Sort Options
+            </button>
+            <ul className="dropdown-menu">
+              <li>
+                <a
+                  className="dropdown-item"
+                  href="#"
+                  onClick={() => sortResults("hasImage")}
+                >
+                  Has Image
+                </a>
+              </li>
+              <li>
+                <a
+                  className="dropdown-item"
+                  href="#"
+                  onClick={() => sortResults("artistAsc")}
+                >
+                  Artist Alphabetical
+                </a>
+              </li>
+              <li>
+                <a
+                  className="dropdown-item"
+                  href="#"
+                  onClick={() => sortResults("titleAsc")}
+                >
+                  Title Alphabetical
+                </a>
+              </li>
+              <li>
+                <a
+                  className="dropdown-item"
+                  href="#"
+                  onClick={() => sortResults("idAsc")}
+                >
+                  ID Asc
+                </a>
+              </li>
+              <li>
+                <a
+                  className="dropdown-item"
+                  href="#"
+                  onClick={() => sortResults("idDesc")}
+                >
+                  ID Desc
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div className="searchResultGrid searchResultGridContainer">
-        {content}
-      </div>
+      <div className="exhibitionResults">{content}</div>
     </div>
   );
 }
