@@ -10,9 +10,12 @@
   --white-colour: #f7e7dc;
   --darkest-colour: #405d72;
   --text-colour: #758694;
+  --bg-colour: #f7e7dc;
+  --middle-colour: #758694;
+  --gap: 6px;
 }
 
-.TopRightInner {
+.TopRightInner, .BottomRightInner {
   background-color: var(--bg-colour);
   width: 100%;
   height: 100%;
@@ -23,61 +26,68 @@
 }
 
 /* Title container styles */
-.TopRightInner .titleContainer {
+.TopRightInner .titleContainer, .BottomRightInner .titleContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   border-radius: 
-  calc(var(--rounded-corner) - var(--border-thickness))
-  calc(var(--rounded-corner) - var(--border-thickness)) 
-  0 
-  0
-  ;
+    calc(var(--rounded-corner) - var(--border-thickness))
+    calc(var(--rounded-corner) - var(--border-thickness)) 
+    0 
+    0;
   background-color: var(--darkest-colour);
   padding: 2px;
   min-height: 60px;
   max-height: 80px;
 }
 
-.TopRightInner .titleContainer h4 {
+.TopRightInner .titleContainer h4, .BottomRightInner .titleContainer h4 {
   padding: 0;
   margin-bottom: 2px;
   color: var(--bg-colour);
 }
 
-.TopRightInner .titleContainer h6 {
+.TopRightInner .titleContainer h6, .BottomRightInner .titleContainer h6 {
   padding: 0;
   margin: 0;
   color: var(--bg-colour);
 }
 
 /* Exhibition results styles */
-.TopRightInner .exhibitionResults {
+.TopRightInner .exhibitionResults, .BottomRightInner .exhibitionResults {
   flex-grow: 1;
   overflow-y: auto;
   padding: var(--gap);
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   justify-content: start;
   margin-top: var(--gap);
   border: 6px solid var(--middle-colour);
   border-radius: 
-  0 
-  0 
-  calc(var(--rounded-corner) - var(--border-thickness)) 
-  calc(var(--rounded-corner) - var(--border-thickness))
-  ;
+    0 
+    0 
+    calc(var(--rounded-corner) - var(--border-thickness)) 
+    calc(var(--rounded-corner) - var(--border-thickness));
 }
 
 /* Hide scrollbar for exhibition results */
-.TopRightInner .exhibitionResults {
+.TopRightInner .exhibitionResults, .BottomRightInner .exhibitionResults {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
-.TopRightInner .exhibitionResults::-webkit-scrollbar {
+.TopRightInner .exhibitionResults::-webkit-scrollbar,
+.BottomRightInner .exhibitionResults::-webkit-scrollbar {
   display: none;
+}
+
+/* Ensure ExhibitionCard components fit within grid cells */
+.exhibitionResults > * {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ExhibitionCard from "./ExhibitionCard";
-import "../Styling/YourExhibitionStyling.css";
+import "../Styling/publicExhibitions.css";
 
 function UserExhibitions({ userID }) {
   const [userExhibitions, setUserExhibitions] = useState(null);

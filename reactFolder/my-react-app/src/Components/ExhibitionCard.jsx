@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import "../Styling/ExhibitionCardStyling.css"
 
 const ExhibitionCard = ({ exhibitionObject }) => {
   const navigate = useNavigate();
