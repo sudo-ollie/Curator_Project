@@ -79,7 +79,18 @@ export default function SearchBuilder() {
       onChange={(e) => setItemType(e.target.value)}
     />
   </div>
+  
   <div className="inline-display">
+    <label htmlFor="title">Title:</label>
+    <input
+      type="text"
+      id="title"
+      value={reqBody.title}
+      onChange={(e) => handleInputChange(e, "title")}
+    />
+  </div>
+
+  {/* <div className="inline-display">
     <label htmlFor="keyword">Keyword:</label>
     <input
       type="text"
@@ -87,7 +98,7 @@ export default function SearchBuilder() {
       value={reqBody.keyword}
       onChange={(e) => handleInputChange(e, "keyword")}
     />
-  </div>
+  </div> */}
 </div>
 <div className="input-row">
   <div className="inline-display">
@@ -122,15 +133,6 @@ export default function SearchBuilder() {
   </div>
 </div>
 <div className="input-row last-row">
-  <div className="inline-display">
-    <label htmlFor="title">Title:</label>
-    <input
-      type="text"
-      id="title"
-      value={reqBody.title}
-      onChange={(e) => handleInputChange(e, "title")}
-    />
-  </div>
   <div className="SearchBtnDiv">
     <div className="hasImageToggle">
       <input
