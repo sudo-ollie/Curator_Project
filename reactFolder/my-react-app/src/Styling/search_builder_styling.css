@@ -13,12 +13,10 @@
   padding: var(--gap);
   margin-top: var(--gap);
   border: 6px solid var(--middle-colour);
-  border-radius: 
-    0 0 
-    calc(var(--rounded-corner) - var(--border-thickness)) 
+  border-radius: 0 0 calc(var(--rounded-corner) - var(--border-thickness))
     calc(var(--rounded-corner) - var(--border-thickness));
   background-color: var(--middle-colour);
-  height: 77%;
+  min-height: fit-content !important;
 }
 
 .SearchInputDiv .titleContainer {
@@ -27,14 +25,10 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  border-radius: 
-    calc(var(--rounded-corner) - var(--border-thickness))
-    calc(var(--rounded-corner) - var(--border-thickness)) 
-    0 0;
+  border-radius: calc(var(--rounded-corner) - var(--border-thickness))
+    calc(var(--rounded-corner) - var(--border-thickness)) 0 0;
   background-color: var(--darkest-colour);
   padding: 2px;
-  min-height: 60px;
-  max-height: 80px;
 }
 
 .titleContainer h4 {
@@ -62,7 +56,7 @@
 }
 
 .inline-display label {
-  color: #F7E7DC;
+  color: #f7e7dc;
   font-size: 0.8rem;
   font-weight: 600;
   margin-bottom: 0.25rem;
@@ -80,8 +74,8 @@
 }
 
 .last-row {
-  justify-content: space-between;
-  align-items: flex-end;
+  justify-content: right;
+
 }
 
 .SearchBtnDiv {
@@ -102,7 +96,7 @@
 }
 
 .hasImageToggle label {
-  color: #F7E7DC;
+  color: #f7e7dc;
   font-size: 0.8rem;
   font-weight: 600;
 }
