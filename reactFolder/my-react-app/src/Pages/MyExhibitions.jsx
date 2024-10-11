@@ -1,9 +1,24 @@
+import React from 'react';
 import { useUser, SignInButton } from "@clerk/clerk-react";
 import ExploreUserExhibitions from "../Components/ExploreUserExhibs";
 import TopBar from "../Components/TopBar";
 
 function UserExhibPage() {
   const { isLoaded, isSignedIn, user } = useUser();
+
+  const buttonStyle = {
+    width: '100px',
+    height: '50px',
+    backgroundColor: 'X',
+    color: 'Y',
+    border: 'none',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    fontSize: '16px',
+    fontWeight: 'bold',
+    transition: 'background-color 0.3s, color 0.3s',
+    marginTop: "20%"
+  };
 
   if (!isLoaded) {
     return (
@@ -39,38 +54,17 @@ function UserExhibPage() {
     return (
       <div id="ContentContainer">
         <TopBar />
-        <div className="MainContent" style={{ height: "calc(100vh - 60px)" }}>
-          <div className="MainContentInner" style={{ 
-            display: "flex", 
-            flexDirection: "column", 
-            height: "100%" 
-          }}>
-            <div className="titleDiv" style={{ height: "7%" }}>
-              <h4>Sign In To View Content</h4>
-            </div>
-            <div className="signInButtonWrapper" style={{ 
-              display: "flex", 
-              flexDirection: "column",
-              justifyContent: "center", 
-              alignItems: "center",
-              width: "100%", 
-              height: "93%"
-            }}>
-              <SignInButton 
-                mode="modal"
-                style={{
-                  width: "200px",
-                  height: "60px",
-                  fontSize: "40px",
-                  backgroundColor: "#405d72",
-                  color: "#f7e7dc",
-                  border: "none",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  transition: "background-color 0.3s ease",
-                }}
-              />
-            </div>
+        <div className="MainContentInnerExplore">
+          <div className="titleContainerExplore">
+            <h4>Sign in to view your exhibitions</h4>
+            <h6>Sign in below</h6>
+          </div>
+          <div className="exhibitionResultsExplore">
+            <SignInButton mode="modal">
+              <button style={buttonStyle}>
+                Sign In
+              </button>
+            </SignInButton>
           </div>
         </div>
       </div>

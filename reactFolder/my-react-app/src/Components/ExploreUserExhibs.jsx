@@ -36,44 +36,6 @@ function ExploreUserExhibs({ userID }) {
     fetchUserData();
   }, [userID]);
 
-  let content;
-  if (loading) {
-    content = (
-      <div className="noResultsDiv">
-        <div className="spinner-border" role="status"></div>
-        <h5>Loading...</h5>
-      </div>
-    );
-  } else if (error) {
-    content = <div className="noResultsDiv">Error: {error.message}</div>;
-  } else if (!userExhibitions || userExhibitions.length === 0) {
-    content = (
-      <div className="noResultsDiv">
-        <h3>),:</h3>
-        <p>No exhibitions found</p>
-      </div>
-    );
-  } else {
-    content = (
-      <div style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(20%, 1fr))',
-        gap: '1rem',
-        width: '100%'
-      }}>
-        {userExhibitions.map((exhibition, index) => (
-          <div key={index} style={{
-            width: '100%',
-            minWidth: '250px',
-            maxWidth: '100%',
-          }}>
-            <ExhibitionCard exhibitionObject={exhibition} index={index} />
-          </div>
-        ))}
-      </div>
-    );
-  }
-
   return (
       <div id="ContentContainer">
         <TopBar />
@@ -81,7 +43,7 @@ function ExploreUserExhibs({ userID }) {
             <div className="titleContainerExplore">
               <h4>Your Exhibitions</h4>
               {userExhibitions.length === 0 ? (
-                <h6>No public exhibtions found, be the first to make one!</h6>
+                <h6>You have no exhibitions, make one!</h6>
               ) : userExhibitions.length > 1 ? (
                 <h6>{userExhibitions.length} exhibitions found</h6>
               ) : (
