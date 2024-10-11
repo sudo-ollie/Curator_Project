@@ -11,8 +11,12 @@
   padding: var(--border-thickness);
   border-radius: calc(var(--rounded-corner) - var(--border-thickness));
   background-color: var(--text-colour);
-  width: 100%;
-  height: auto;
+  width: 100% !important;
+  height: 75% !important;
+  min-height: 350px !important;
+  max-height: 350px !important;
+  min-width: 250px !important;
+  margin: auto !important;
 }
 
 .exhibition-image {
