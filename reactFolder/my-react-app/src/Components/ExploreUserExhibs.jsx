@@ -75,30 +75,33 @@ function ExploreUserExhibs({ userID }) {
   }
 
   return (
-    <div id="ContentContainer">
-      <TopBar />
-      <div className="MainContent">
-        <div className="MainContentInner" style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'stretch',
-          height: '100%',
-          padding: '1rem',
-          gap: '1rem'
-        }}>
-          <div className="titleDiv" style={{ marginBottom: '1rem' }}>
-            <h4>Your Exhibitions</h4>
-            {userExhibitions && userExhibitions.length > 0 && (
-              <h6>Total Exhibitions: {userExhibitions.length}</h6>
-            )}
-          </div>
-          <div style={{ flex: 1, overflowY: 'auto' }}>
-            {content}
+      <div id="ContentContainer">
+        <TopBar />
+          <div className="MainContentInnerExplore">
+            <div className="titleContainerExplore">
+              <h4>Your Exhibitions</h4>
+              {userExhibitions.length === 0 ? (
+                <h6>No public exhibtions found, be the first to make one!</h6>
+              ) : userExhibitions.length > 1 ? (
+                <h6>{userExhibitions.length} exhibitions found</h6>
+              ) : (
+                <h6>{userExhibitions.length} exhibition found</h6>
+              )}
+            </div>
+            <div className="exhibitionResultsExplore">
+              {userExhibitions.length === 0 ? (
+                <p>No public exhibitions found.</p>
+              ) : (
+                userExhibitions.map((exhibition, index) => (
+                  <div key={index}>
+                    <ExhibitionCard exhibitionObject={exhibition} id="ExhibitionCard"/>
+                  </div>
+                ))
+              )}
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
 
 export default ExploreUserExhibs;

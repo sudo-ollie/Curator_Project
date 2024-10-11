@@ -42,7 +42,7 @@ function ExplorePubExhibs() {
       <TopBar />
         <div className="MainContentInnerExplore">
           <div className="titleContainerExplore">
-            <h4>Your Exhibitions</h4>
+            <h4>Public Exhibitions</h4>
             {userExhibitions.length === 0 ? (
               <h6>No public exhibtions found, be the first to make one!</h6>
             ) : userExhibitions.length > 1 ? (
