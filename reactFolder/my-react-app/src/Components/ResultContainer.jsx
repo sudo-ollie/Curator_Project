@@ -54,9 +54,20 @@ export default function ResultContainer() {
   let content;
   if (isLoading) {
     content = (
-      <div className="contentContainer centerSpinner">
-        <div className="spinnerDiv">
-          <div className="spinner-border" role="status"></div>
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+        width: '100%'
+      }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          textAlign: 'center'
+        }}>
+          <div className="spinner-border" role="status" style={{ marginBottom: '1rem' }}></div>
           <h5>Content Loading...</h5>
         </div>
       </div>
@@ -73,13 +84,27 @@ export default function ResultContainer() {
     );
   } else if (apiResponse == null) {
     content = (
-      <div className="contentContainer centerSpinner">
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+        width: '100%',
+        textAlign: 'center',
+        padding: '0 1rem'
+      }}>
         <h5>Make a search to view articles. If your search failed, try something less broad.</h5>
       </div>
     );
   } else {
     content = (
-      <div className="contentContainer centerSpinner">
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%',
+        width: '100%'
+      }}>
         <h5>{apiResponse.length} - Articles Found</h5>
       </div>
     );
