@@ -54,27 +54,17 @@ export default function ResultContainer() {
   let content;
   if (isLoading) {
     content = (
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
-        width: '100%'
-      }}>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          textAlign: 'center'
-        }}>
-          <div className="spinner-border" role="status" style={{ marginBottom: '1rem' }}></div>
-          <h5>Content Loading...</h5>
-        </div>
+      <div className="messageDiv">
+      <div className="spinnerDiv">
+        <div className="spinner-border" role="status"></div>
+        <h5>Content Loading...</h5>
+      </div>
+        <h5>Searches may take up to a minute to complete.</h5>
       </div>
     );
   } else if (sortedResponse && sortedResponse.length > 0) {
     content = (
-      <div className="contentContainer gridModifier">
+      <div className="contentContainer">
         {sortedResponse.map((element, index) => (
           <div key={index} className="item-wrapper">
             <ItemCard element={element} index={index} />
@@ -84,31 +74,17 @@ export default function ResultContainer() {
     );
   } else if (apiResponse == null) {
     content = (
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
-        width: '100%',
-        textAlign: 'center',
-        padding: '0 1rem'
-      }}>
+      <div className="messageDiv">
         <h5>Make a search to view articles. If your search failed, try something less broad.</h5>
+        <h5>Searches may take up to a minute to complete.</h5>
       </div>
     );
   } else {
     content = (
-      <div style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100%',
-        width: '100%'
-      }}>
-        <h5>{apiResponse.length} - Articles Found</h5>
-      </div>
+      <h5>{apiResponse.length} - Articles Found</h5>
     );
   }
+
   return (
     <div className="SearchResultContainer">
       <div className="titleContainer">
@@ -193,7 +169,9 @@ export default function ResultContainer() {
           </div>
         </div>
       </div>
-      <div className="exhibitionResults">{content}</div>
+      <div className="exhibitionResultsMain">
+          {content}
+      </div>
     </div>
   );
 }
