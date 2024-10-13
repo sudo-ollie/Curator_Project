@@ -1,34 +1,36 @@
 /* ItemCardStyling.css */
 
 :root {
-  --gap: 6px;
-  --radius: 20px;
-  --bg-colour: #f7e7dc;
-  --lightest-colour: #FFF8F3;
-  --text-colour: #405d72;
-  --middle-colour: #758694;
+  --border-thickness: 6px;
+  --rounded-corner: 10px;
+  --white-colour: #f7e7dc;
+  --darkest-colour: #405d72;
+  --text-colour: #758694;
+  --middle-colour: #a2b5c7;
 }
 
 .ItemCardContainer {
+  margin: auto !important;
+  padding: 0 !important;
+  width: 40rem !important;
   display: flex;
   flex-direction: row;
-  border-radius: 15px;
-  background-color: var(--lightest-colour);
-  width: 100%;
-  height: 100%; 
-  min-height: fit-content;
-  max-height: 43rem; 
+  border-radius: calc(var(--rounded-corner) - var(--border-thickness)) !important;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  padding: 0.5rem;
-  margin: 0;
+  background-color: var(--darkest-colour) !important;
+  border: var(--border-thickness) solid var(--darkest-colour);
 }
 
 .ItemCardImage {
   position: relative;
   width: 50%;
   flex-shrink: 0;
-  border-radius: 15px 0 0 15px;
+  border-radius:
+  0
+  calc(var(--rounded-corner) - var(--border-thickness))
+  calc(var(--rounded-corner) - var(--border-thickness))
+  0
+  !important;
   overflow: hidden;
 }
 
@@ -47,9 +49,14 @@
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  padding: 1rem;
-  background-color: var(--bg-colour);
-  border-radius: 0px 15px 15px 0px;
+  padding: var(--border-thickness) !important;
+  background-color: var(--white-colour);
+  border-radius:
+  0
+  calc(var(--rounded-corner) - var(--border-thickness))
+  calc(var(--rounded-corner) - var(--border-thickness))
+  0
+  !important;
   margin-left: 0.5rem;
 }
 
@@ -62,21 +69,23 @@
 .ItemCardTitle h3 {
   margin: 0;
   font-size: 1.2rem;
-  color: #333;
+  color: var(--darkest-colour);
 }
 
 .ItemCardTitle h5 {
   margin: 4px 0 0;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-colour);
 }
 
 .ItemCardDetails {
   font-size: 0.8rem;
-  color: #555;
-  flex-grow: 1;
+  color: var(--text-colour);
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  overflow-y: auto;
+  padding-bottom: var(--border-thickness);
 }
 
 .ItemCardDetails p {
@@ -90,7 +99,7 @@
 
 .ItemCardDetails .fieldContainer #content {
   font-weight: 600;
-  color: rgb(59, 59, 59);
+  color: var(--darkest-colour);
 }
 
 .ItemCardDetails .fieldContainer #subHeading {
@@ -101,31 +110,29 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  min-height: 10%;
-  padding: 10px 0;
-}
-
-.btnContainer > * {
-  display: flex;
-  align-items: center;
-  height: 100%;
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 20px !important;
+  overflow: hidden;
 }
 
 .ItemCard_likeicon {
   display: flex;
   align-items: center;
+  justify-content: center;
   cursor: pointer;
+  height: 100%;
 }
 
 .ItemCard_likeicon:hover,
 .material-symbols-outlined.prevent-select:hover {
-  transform: scale(1.5);
+  transform: scale(1.2);
   transition: all 0.3s ease;
 }
 
 .ItemCard_likeicon .material-icons {
-  font-size: 24px;
-  color: #333;
+  font-size: 18px;
+  color: var(--darkest-colour);
   margin-right: 5px;
 }
 
@@ -135,7 +142,7 @@
 
 .ItemCard_likeicon .likeText {
   font-size: 14px;
-  color: #333;
+  color: var(--darkest-colour);
 }
 
 .ItemCardContainer:hover #likeIcon {
@@ -147,4 +154,12 @@
   -ms-user-select: none;
   user-select: none;
   margin-left: 0.5rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnContainer a {
+  text-decoration: none !important;
 }

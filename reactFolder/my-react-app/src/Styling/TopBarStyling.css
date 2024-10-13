@@ -1,62 +1,69 @@
 :root {
-  --gap: 6px;
-  --radius: 20px;
-  --bg-color: #f7e7dc;
-  --text-color: #405d72;
+  /* Spacing & Sizing */
+  --border-thickness: 6px;
+  
+  /* Border Values */
+  --rounded-corner: 10px;
+  
+  /* Colours */
+  --bg-colour: #f7e7dc;
+  --text-colour: #405d72;
+  --middle-colour: #758694;
 }
 
 .TopBar {
-  background-color: #758694;
+  background-color: var(--middle-colour);
   text-align: center;
-  flex: 0 0 7%;
+  flex: 0 0 auto;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius);
-  min-height: 50px;
-  max-height: 10vh;
-  padding: var(--gap);
+  border-radius: var(--rounded-corner);
+  min-height: 60px;
+  max-height: 80px;
+  box-sizing: border-box;
+  border: var(--border-thickness) solid var(--text-colour);
+  position: relative;
   overflow: hidden;
 }
 
 .TopBarInner {
-  background-color: var(--bg-color);
   width: 100%;
   height: 100%;
-  border-radius: calc(var(--radius) - var(--gap));
+  background-color: var(--bg-colour);
+  border-radius: calc(var(--rounded-corner) - var(--border-thickness));
   overflow: hidden;
-}
-
-.TopBarContent {
   display: flex;
-  flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  height: 100%;
-  padding: 0 20px;
+  padding: var(--border-thickness) 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .TopBarLinks {
   display: flex;
   align-items: center;
   gap: 20px;
-  height: 100%;
-  margin-right: 2rem;
 }
 
 .TopBarText {
-  color: var(--text-color);
+  color: var(--text-colour);
   font-size: 16px;
   text-decoration: none;
-  transition: color 0.3s, text-decoration 0.3s;
-  display: flex;
-  align-items: center;
-  height: 100%;
+  transition: transform 0.3s ease;
+  padding: 10px 0;
 }
 
 a.TopBarText:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: 3px;
 }
 
 .UserButtonWrapper {
@@ -69,7 +76,5 @@ a.TopBarText:hover {
 }
 
 .prevent-select {
-  -webkit-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }

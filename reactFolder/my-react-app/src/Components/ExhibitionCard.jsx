@@ -1,40 +1,36 @@
-import "../Styling/ExhibitionCardStyling.css";
 import { useNavigate } from 'react-router-dom';
+import "../Styling/ExhibitionCardStyling.css"
 
-
-function ExhibitionCard({ exhibitionObject }) {
+const ExhibitionCard = ({ exhibitionObject }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="exhibitionIndividual">
-      <div className="exhibImageContainer">
-        <img
-          src={
-            exhibitionObject.ExhibitionImage ||
-            "https://mtek3d.com/wp-content/uploads/2018/01/image-placeholder-500x500.jpg"
-          }
-          alt={exhibitionObject.ExhibitionName || "Exhibition placeholder"}
-        />
-      </div>
-      <div className="exhibContentContainer">
-        <div className="titleContent">
-          <h5>{exhibitionObject.ExhibitionName}</h5>
-          <p>Curator : X</p>
+    <div className="exhibition-card">
+      <img
+        src={exhibitionObject.ExhibitionImage || "/api/placeholder/500/500"}
+        alt={exhibitionObject.ExhibitionName || "Exhibition placeholder"}
+        className="exhibition-image"
+      />
+      <div className="exhibition-body">
+        <div className="title-section">
+          <h5 className="exhibition-title">{exhibitionObject.ExhibitionName}</h5>
         </div>
-        <p>ID : {exhibitionObject.ExhibitionID}</p>
-        <p>Exhibit Length : {exhibitionObject.ExhibitionLength}</p>
-      </div>
-      <div className="footerDiv">
-      <button
-      type="button"
-      className="btn btn-secondary explore-btn"
-      onClick={() => navigate(`/Exhibition/${exhibitionObject.ExhibitionID}`)}
-    >
-      Explore Exhibition
-    </button>
+        <hr className="dashed-line" />
+        <div className="info-section">
+          <p>Exhibition ID: {exhibitionObject.ExhibitionID}</p>
+          <p>|</p>
+          <p>Exhibition Length: {exhibitionObject.ExhibitionLength}</p>
+        </div>
+        <hr className="dashed-line" />
+        <button 
+          className="explore-button"
+          onClick={() => navigate(`/Exhibition/${exhibitionObject.ExhibitionID}`)}
+        >
+          Explore Exhibition
+        </button>
       </div>
     </div>
   );
-}
+};
 
 export default ExhibitionCard;
