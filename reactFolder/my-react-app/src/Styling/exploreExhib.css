@@ -22,7 +22,6 @@
 }
 
 .MainContent {
-  background-color: hsl(207, 13%, 52%);
   flex: 1;
   border-radius: var(--radius);
   text-align: center;
