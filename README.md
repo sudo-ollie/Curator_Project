@@ -55,8 +55,98 @@ To build this project I used the technologies below. This stack provided a good 
 
 ## Project Structure
 
-```mermaid 
-graph TD A[main.jsx] --> B[HomePage.jsx] A --> C[MyExhibitions.jsx] A --> D[ExploreExhibitions.jsx] A --> E[ExhibitionPage.jsx] A --> F[LikedItemsProvider] B --> G[TopBar] B --> H[SearchResultWrapper] B --> I[PublicExhibitions] B --> J[UserExhibs_SI] B --> K[UserExhibs_SO] H --> L[SearchContainer] H --> M[ResultContainer] L --> N[SearchBuilder] N --> O[SearchButton] M --> P[ItemCard] C --> Q[ExploreUserExhibitions] D --> R[ExplorePubExhibs] E --> S[ItemCardExhib] F --> T[LikedItemsContext] subgraph Components G H I J K L M N O P Q R S end subgraph Context F T end subgraph External APIs API1[/itemSearch Lambda/] API2[/userExhibitions Lambda/] API3[/publicExhibitions Lambda/] API4[/createExhibit Lambda/] API5[/loadExhibit Lambda/] end subgraph Databases DB1[(PublicExhibitions)] DB2[(PrivateExhibitions)] end subgraph External Services ES1[External API 1] ES2[External API 2] end O -->|POST| API1 J -->|GET| API2 I -->|GET| API3 P -->|POST| API4 E -->|GET| API5 Q -->|GET| API2 R -->|GET| API3 API1 -->|Call| ES1 API1 -->|Call| ES2 API2 -->|Read| DB1 API2 -->|Read| DB2 API3 -->|Read| DB1 API4 -->|Write| DB1 API4 -->|Write| DB2 API5 -->|Read| DB1 API5 -->|Read| DB2 style Components fill:#f9f,stroke:#333,stroke-width:2px style Context fill:#bbf,stroke:#333,stroke-width:2px style External APIs fill:#bfb,stroke:#333,stroke-width:2px style Databases fill:#ff9,stroke:#333,stroke-width:2px style External Services fill:#f96,stroke:#333,stroke-width:2px
+```mermaid
+graph TD
+    A[main.jsx] --> B[HomePage.jsx]
+    A --> C[MyExhibitions.jsx]
+    A --> D[ExploreExhibitions.jsx]
+    A --> E[ExhibitionPage.jsx]
+    A --> F[LikedItemsProvider]
+
+    B --> G[TopBar]
+    B --> H[SearchResultWrapper]
+    B --> I[PublicExhibitions]
+    B --> J[UserExhibs_SI]
+    B --> K[UserExhibs_SO]
+
+    H --> L[SearchContainer]
+    H --> M[ResultContainer]
+
+    L --> N[SearchBuilder]
+    N --> O[SearchButton]
+
+    M --> P[ItemCard]
+
+    C --> Q[ExploreUserExhibitions]
+
+    D --> R[ExplorePubExhibs]
+
+    E --> S[ItemCardExhib]
+
+    F --> T[LikedItemsContext]
+
+    subgraph Components
+        G
+        H
+        I
+        J
+        K
+        L
+        M
+        N
+        O
+        P
+        Q
+        R
+        S
+    end
+
+    subgraph Context
+        F
+        T
+    end
+
+    subgraph External APIs
+        API1[/itemSearch Lambda/]
+        API2[/userExhibitions Lambda/]
+        API3[/publicExhibitions Lambda/]
+        API4[/createExhibit Lambda/]
+        API5[/loadExhibit Lambda/]
+    end
+
+    subgraph Databases
+        DB1[(PublicExhibitions)]
+        DB2[(PrivateExhibitions)]
+    end
+
+    subgraph External Services
+        ES1[External API 1]
+        ES2[External API 2]
+    end
+
+    O -->|POST| API1
+    J -->|GET| API2
+    I -->|GET| API3
+    P -->|POST| API4
+    E -->|GET| API5
+    Q -->|GET| API2
+    R -->|GET| API3
+
+    API1 -->|Call| ES1
+    API1 -->|Call| ES2
+    API2 -->|Read| DB1
+    API2 -->|Read| DB2
+    API3 -->|Read| DB1
+    API4 -->|Write| DB1
+    API4 -->|Write| DB2
+    API5 -->|Read| DB1
+    API5 -->|Read| DB2
+
+    style Components fill:#f9f,stroke:#333,stroke-width:2px
+    style Context fill:#bbf,stroke:#333,stroke-width:2px
+    style External APIs fill:#bfb,stroke:#333,stroke-width:2px
+    style Databases fill:#ff9,stroke:#333,stroke-width:2px
+    style External Services fill:#f96,stroke:#333,stroke-width:2px
 ```
 
 ## Features
@@ -78,7 +168,7 @@ Part of the core specification for this project was the usage of atleast two fre
 
 __Harvard API__
 - [Website](https://harvardartmuseums.org/) 
-- [Documentation](*https://github.com/harvardartmuseums/api-docs) 
+- [Documentation](https://github.com/harvardartmuseums/api-docs) 
 
 __MET API__
 - [Website](https://www.metmuseum.org/) 
