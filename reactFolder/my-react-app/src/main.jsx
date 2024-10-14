@@ -9,6 +9,7 @@ import MyExhibitionsPage from './Pages/MyExhibitions.jsx';
 import ExploreExhibitionsPage from './Pages/ExploreExhibitions.jsx';
 import { LikedItemsProvider } from './Components/LikedItemsProvider';
 import ExhibitionPage from './Pages/ExhibitionPage.jsx';
+import MyExhibition from './Pages/My Exhibiton.jsx';
 
 createRoot(document.getElementById('root')).render(
   <LikedItemsProvider>
@@ -19,6 +20,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="/MyExhibitions" element={<MyExhibitionsPage />} />
           <Route path="/ExploreExhibitions" element={<ExploreExhibitionsPage />} />
           <Route path="/Exhibition/:id" element={<ExhibitionPage />} />
+          <Route path="/MyExhibition" element={<MyExhibition />} />
         </Routes>
       </Router>
     </ClerkProvider>
