@@ -11,6 +11,8 @@ function TopBar() {
             <span className="TopBarText prevent-select">|</span>
             <a href="/ExploreExhibitions" className="TopBarText">Explore Exhibitions</a>
             <span className="TopBarText prevent-select">|</span>
+            <a href="/MyExhibition" className="TopBarText">My Exhibition</a>
+            <span className="TopBarText prevent-select">|</span>
             <a href="/MyExhibitions" className="TopBarText">My Exhibitions</a>
             <span className="TopBarText prevent-select">&gt;</span>
           </div>
