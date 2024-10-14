@@ -27,14 +27,12 @@ export default function UserExhibs_SO() {
           textAlign: 'center',
           maxWidth: '80%',
         }}>
-          <p style={{
-            fontSize: '16px',
-            marginBottom: '20px',
+          <h5 style={{
             color: "#405D72"
           }}>
             Unlock the ability to create and manage your own exhibitions. 
             Sign in to start curating your personal collections.
-          </p>
+          </h5>
           <SignInButton 
             mode="modal"
             style={{

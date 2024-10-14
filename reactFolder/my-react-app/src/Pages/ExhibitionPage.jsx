@@ -16,8 +16,8 @@ function ExhibitionPage() {
       try {
         const config = {
           headers: {
-            'Content-Type': 'application/json'
-          }
+            "Content-Type": "application/json",
+          },
         };
         const response = await axios.get(
           `https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/loadExhibit?exhibitionID=${id}`,
@@ -26,7 +26,7 @@ function ExhibitionPage() {
         setItemData(response.data.exhibitions[0]);
         setLoading(false);
       } catch (err) {
-        setError(err)
+        setError(err);
         console.error(err);
         setLoading(false);
       }
@@ -36,6 +36,9 @@ function ExhibitionPage() {
       fetchData();
     }
   }, [id]);
+
+
+  console.log(itemData)
 
   let content;
   if (loading) {
@@ -57,42 +60,48 @@ function ExhibitionPage() {
       </div>
     );
   } else {
-    content = itemData.ExhibitContent && itemData.ExhibitContent.length > 0 ? (
-      itemData.ExhibitContent.map((element, index) => (
-        <div key={index} className="item-wrapper">
-          <ItemCardExhib element={element} index={index} />
+    content =
+      itemData.ExhibitContent && itemData.ExhibitContent.length > 0 ? (
+        itemData.ExhibitContent.map((element, index) => (
+          <div key={index} className="item-wrapper">
+            <ItemCardExhib element={element} index={index} />
+          </div>
+        ))
+      ) : (
+        <div className="backupDiv">
+          <strong>
+            <h3>),:</h3>
+            <p>No items in this exhibition</p>
+          </strong>
         </div>
-      ))
-    ) : (
-      <div className="backupDiv">
-        <strong>
-          <h3>),:</h3>
-          <p>No items in this exhibition</p>
-        </strong>
-      </div>
-    );
+      );
   }
-
+  
   return (
     <div id="ContentContainer">
       <TopBar />
-      <div className="MainContent">
-        <div className="MainContentInner">
-          {itemData && (
-            <div className="titleDiv">
+      <div className="MainContentInnerExplore">
+        <div className="titleContainerExplore">
+          {itemData ? (
+            <>
               <h4>{itemData.ExhibitionName}</h4>
-              <h6>
-                Exhibition Length: {itemData.ExhibitionLength} | Exhibition ID:{" "}
-                {itemData.ExhibitionID}
-              </h6>
-            </div>
-          )}
-          {itemData && itemData.ExhibitContent && itemData.ExhibitContent.length > 0 ? (
-            <div className="searchResultGrid searchResultGridContainer">
-              {content}
-            </div>
+              {itemData.ExhibitContent.length === 0 ? (
+                <h6>No items found within this exhibition.</h6>
+              ) : itemData.ExhibitContent.length > 1 ? (
+                <h6>{itemData.ExhibitContent.length} exhibition items found</h6>
+              ) : (
+                <h6>{itemData.ExhibitContent.length} exhibition item found</h6>
+              )}
+            </>
           ) : (
-            <div className="noResultsDiv">{content}</div>
+            <h4>Exhibition Loading</h4>
+          )}
+        </div>
+        <div className="exhibitionResultsExplore">
+          {itemData && itemData.ExhibitContent.length === 0 ? (
+            <p>No public exhibitions found.</p>
+          ) : (
+            content
           )}
         </div>
       </div>
