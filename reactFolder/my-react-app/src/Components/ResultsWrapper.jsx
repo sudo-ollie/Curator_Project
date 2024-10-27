@@ -4,7 +4,7 @@ import ResultContainer from './ResultContainer';
 
 export const SearchContext = createContext();
 
-export default function SearchResultWrapper() {
+export default function SearchResultWrapper({ onExhibitionCreated }) {
   const [apiResponse, setApiResponse] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
@@ -22,10 +22,9 @@ export default function SearchResultWrapper() {
       setItemType
     }}>
       <div className="LeftContentInner">
-      <SearchContainer />
-      <ResultContainer />
+        <SearchContainer />
+        <ResultContainer onExhibitionCreated={onExhibitionCreated} />
       </div>
-
     </SearchContext.Provider>
   );
 }

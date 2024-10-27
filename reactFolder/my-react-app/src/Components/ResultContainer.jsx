@@ -6,7 +6,7 @@ import ItemCard from "./ItemCard";
 import { useUser } from "@clerk/clerk-react";
 import "../Styling/SearchResultStyling.css";
 
-export default function ResultContainer() {
+export default function ResultContainer({ onExhibitionCreated }) {
   const { likedItems } = LoadLikedItems();
   const { apiResponse, isLoading } = useContext(SearchContext);
   const [sortedResponse, setSortedResponse] = useState([]);
@@ -91,7 +91,7 @@ export default function ResultContainer() {
         <div className="leftContent">
           <div className="creatorContainer">
             {isLoaded && isSignedIn && user?.id ? (
-              <CreateExhib likedItems={likedItems} userID={user.id} reloadLikedItems={LoadLikedItems} />
+              <CreateExhib likedItems={likedItems} userID={user.id} onExhibitionCreated={onExhibitionCreated} />
             ) : isLoaded && !isSignedIn ? (
               <p>Please sign in to create an exhibit</p>
             ) : (

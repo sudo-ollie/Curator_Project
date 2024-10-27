@@ -3,7 +3,7 @@ import ExhibitionCard from "./ExhibitionCard";
 import "../Styling/publicExhibitions.css";
 import axios from "axios";
 
-function PublicExhibitions({ userID }) {
+function PublicExhibitions({ refreshTrigger }) {
   const [publicExhibitions, setPublicExhibitions] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -15,11 +15,12 @@ function PublicExhibitions({ userID }) {
         setError(null);
         const config = {
           headers: {
-            'Content-Type': 'application/json'
-          }
+            "Content-Type": "application/json",
+          },
         };
         const response = await axios.get(
-          "https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/publicExhibitions",config
+          "https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/publicExhibitions",
+          config
         );
         setPublicExhibitions(response.data.exhibitions);
       } catch (error) {
@@ -31,7 +32,7 @@ function PublicExhibitions({ userID }) {
     };
 
     fetchData();
-  }, [userID]);
+  }, [refreshTrigger]);
 
   if (isLoading) return <div>Loading exhibitions...</div>;
   if (error) return <div>Error: {error}</div>;
@@ -52,11 +53,11 @@ function PublicExhibitions({ userID }) {
       <div className="exhibitionResults">
         {publicExhibitions.length === 0 ? (
           <p>No public exhibitions found.</p>
-          ) : (
-            publicExhibitions.map((exhibition, index) => (
-              <ExhibitionCard exhibitionObject={exhibition} key={index} />
-              ))
-              )}
+        ) : (
+          publicExhibitions.map((exhibition, index) => (
+            <ExhibitionCard exhibitionObject={exhibition} key={index} />
+          ))
+        )}
       </div>
     </div>
   );

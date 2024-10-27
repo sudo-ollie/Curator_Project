@@ -4,7 +4,7 @@ import { Modal, Button, Form, Image } from "react-bootstrap";
 import { LoadLikedItems } from "./LoadLikedItems";
 import axios from "axios";
 
-function CreateExhib({ likedItems, userID }) {
+function CreateExhib({ likedItems, userID, onExhibitionCreated }) {
   const { reloadLikedItems } = LoadLikedItems();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [exhibName, setExhibName] = useState("testExhib");
@@ -18,7 +18,7 @@ function CreateExhib({ likedItems, userID }) {
   }, [likedItems]);
 
 
-  const handleSaveExhibition = () => {
+  const handleSaveExhibition = async () => {
     let requestPayload = {
       userID: userID,
       exhibName: exhibName,
@@ -33,10 +33,19 @@ function CreateExhib({ likedItems, userID }) {
       }
     };
 
-    axios.post("https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/createExhibit" , requestPayload, config)
-    localStorage.setItem('likedItems', JSON.stringify([]));
-    reloadLikedItems()
-    setIsModalOpen(false);
+    try {
+      await axios.post("https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/createExhibit", requestPayload, config);
+      localStorage.setItem('likedItems', JSON.stringify([]));
+      reloadLikedItems();
+      setIsModalOpen(false);
+      
+      // Call the callback to trigger refresh
+      if (onExhibitionCreated) {
+        onExhibitionCreated();
+      }
+    } catch (error) {
+      console.error("Error creating exhibition:", error);
+    }
   };
 
   return (

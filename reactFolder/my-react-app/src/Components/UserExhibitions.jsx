@@ -3,7 +3,7 @@ import axios from "axios";
 import ExhibitionCard from "./ExhibitionCard";
 import "../Styling/publicExhibitions.css";
 
-function UserExhibitions({ userID }) {
+function UserExhibitions({ userID, refreshTrigger }) {
   const [userExhibitions, setUserExhibitions] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -32,7 +32,7 @@ function UserExhibitions({ userID }) {
     };
 
     fetchData();
-  }, [userID]);
+  }, [userID, refreshTrigger]);
 
   if (isLoading) return <div>Loading exhibitions...</div>;
   if (error) return <div>{error}</div>;
