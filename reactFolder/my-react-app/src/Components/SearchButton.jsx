@@ -9,7 +9,7 @@ export default function SearchButton({ validSearch , reqBody }) {
     headers: {
       'Content-Type': 'application/json'
     },
-    timeout: 60000
+    timeout: 180000
   };
 
   async function handleSearch() {
