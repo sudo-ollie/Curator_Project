@@ -18,7 +18,6 @@ export default function SearchButton({ validSearch , reqBody }) {
         setIsLoading(true);
         const response = await axios.post('https://5nhtviapkusw7lmif3rmthlreu0ljqca.lambda-url.eu-west-2.on.aws/', reqBody, config);
         setApiResponse(response.data);
-        localStorage.setItem('likedItems', JSON.stringify([]));
       } catch (error) {
         console.log(`ERROR : ${error.message}`);
         setApiResponse(null);

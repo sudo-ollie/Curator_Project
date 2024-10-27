@@ -1,9 +1,11 @@
 import { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal, Button, Form, Image } from "react-bootstrap";
+import { LoadLikedItems } from "./LoadLikedItems";
 import axios from "axios";
 
 function CreateExhib({ likedItems, userID }) {
+  const { reloadLikedItems } = LoadLikedItems();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [exhibName, setExhibName] = useState("testExhib");
   const [isPublic, setIsPublic] = useState(true);
@@ -25,16 +27,15 @@ function CreateExhib({ likedItems, userID }) {
       exhibItems: likedItems,
     };
 
-    console.log(requestPayload)
-
     const config = {
       headers: {
         'Content-Type': 'application/json'
       }
     };
 
-    let response = axios.post("https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/createExhibit" , requestPayload, config)
-    console.log(response.status)
+    axios.post("https://8kbydqr7ig.execute-api.eu-west-2.amazonaws.com/createExhibit" , requestPayload, config)
+    localStorage.setItem('likedItems', JSON.stringify([]));
+    reloadLikedItems()
     setIsModalOpen(false);
   };
 

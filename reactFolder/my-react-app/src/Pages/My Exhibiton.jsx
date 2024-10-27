@@ -13,7 +13,6 @@ function MyExhibition() {
   const { likedItems } = useContext(LikedItemsContext);
 
   useEffect(() => {
-    console.log("Component mounted or likedItems changed:", likedItems);
     if (location.pathname === '/MyExhibition') {
       if (likedItems && likedItems.length > 0) {
         setItemData({
@@ -28,8 +27,6 @@ function MyExhibition() {
     }
   }, [location.pathname, likedItems]);
 
-  console.log("Liked items:", likedItems);
-  console.log("Item data:", itemData);
 
   let content;
   if (loading) {
@@ -46,7 +43,6 @@ function MyExhibition() {
       </div>
     );
   } else {
-    console.log("Is Array:", Array.isArray(itemData.ExhibitContent));
     content = itemData.ExhibitContent.map((element, index) => (
       <div key={index} className="item-wrapper">
         <ItemCardExhib2 element={element} index={index} />

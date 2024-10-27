@@ -14,7 +14,6 @@ export const LikedItemsProvider = ({ children }) => {
   const addLikedItem = useCallback((item) => {
     setLikedItems((prevItems) => {
       if (!prevItems.some(existingItem => existingItem.ArticleId === item.ArticleId)) {
-        console.log("Adding item:", item);
         return [...prevItems, item];
       }
       return prevItems;
@@ -29,12 +28,18 @@ export const LikedItemsProvider = ({ children }) => {
     return likedItems.some(item => item.ArticleId === articleId);
   }, [likedItems]);
 
+  const reloadLikedItems = useCallback(() => {
+    const savedItems = localStorage.getItem('likedItems');
+    setLikedItems(savedItems ? JSON.parse(savedItems) : []);
+  }, []);
+
   const contextValue = useMemo(() => ({
     likedItems,
     addLikedItem,
     removeLikedItem,
-    isItemLiked
-  }), [likedItems, addLikedItem, removeLikedItem, isItemLiked]);
+    isItemLiked,
+    reloadLikedItems
+  }), [likedItems, addLikedItem, removeLikedItem, isItemLiked , reloadLikedItems]);
 
   return (
     <LikedItemsContext.Provider value={contextValue}>

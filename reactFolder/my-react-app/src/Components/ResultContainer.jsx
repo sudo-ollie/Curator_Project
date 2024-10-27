@@ -12,7 +12,7 @@ export default function ResultContainer() {
   const [sortedResponse, setSortedResponse] = useState([]);
   const { user, isLoaded, isSignedIn } = useUser();
 
-  console.log(apiResponse);
+
 
   useEffect(() => {
     setSortedResponse(apiResponse);
@@ -91,7 +91,7 @@ export default function ResultContainer() {
         <div className="leftContent">
           <div className="creatorContainer">
             {isLoaded && isSignedIn && user?.id ? (
-              <CreateExhib likedItems={likedItems} userID={user.id} />
+              <CreateExhib likedItems={likedItems} userID={user.id} reloadLikedItems={LoadLikedItems} />
             ) : isLoaded && !isSignedIn ? (
               <p>Please sign in to create an exhibit</p>
             ) : (

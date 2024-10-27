@@ -47,10 +47,8 @@ function UserExhibPage() {
   }
 
   if (isSignedIn) {
-    console.log("User is signed in");
     return <ExploreUserExhibitions userID={user.id} />;
   } else {
-    console.log("User is signed out");
     return (
       <div id="ContentContainer">
         <TopBar />

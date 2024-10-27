@@ -37,9 +37,6 @@ function ExhibitionPage() {
     }
   }, [id]);
 
-
-  console.log(itemData)
-
   let content;
   if (loading) {
     content = (
